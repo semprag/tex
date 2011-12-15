@@ -98,7 +98,12 @@
 \RequirePackage{ifthen}
 
 \if@biblatex
-	\RequirePackage[backend=biber,bibstyle=sp-biblatex,citestyle=authoryear-comp,natbib]{biblatex}
+	\RequirePackage[backend=biber,
+			bibstyle=sp-biblatex,
+			citestyle=authoryear-comp,
+			natbib,
+			maxcitenames=3,
+			maxbibnames=99]{biblatex}
 	\setlength{\bibitemsep}{0pt}
 \else
 	\RequirePackage{natbib}
