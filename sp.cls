@@ -555,13 +555,13 @@
 %=====================================================================
 %=========================== linguex settings ========================
 
-\AtBeginDocument{%
-\ifdefined\NNext% this tests for whether linguex.sty is being used
-\renewcommand{\refdash}{}\settowidth{\Exlabelwidth}{(110)}%
-\else
-\relax%
-\fi
-}
+%\AtBeginDocument{%
+%\ifdefined\NNext% this tests for whether linguex.sty is being used
+%\renewcommand{\refdash}{}\settowidth{\Exlabelwidth}{(110)}%
+%\else
+%\relax%
+%\fi
+%}
 
 %================================ fin ================================
 %=====================================================================
