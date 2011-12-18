@@ -105,6 +105,7 @@
 			maxcitenames=3,
 			maxbibnames=99]{biblatex}
 	\setlength{\bibitemsep}{0pt}
+    \renewcommand*{\nameyeardelim}{\addspace} % this should probably go into our own citestyle
 \else
 	\RequirePackage{natbib}
 	\bibpunct[: ]{(}{)}{,}{a}{}{,}
