@@ -57,11 +57,9 @@
       {\mathclose}{letters}{131}{largesymbols}{131}
     \normalfont\DeclareTextCommand
       \textbullet\encodingdefault{\UseTextSymbol{OMS}\textbullet}
-	\let\nLeftrightarrow\undefined 
-	\DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
- }{\ClassWarning{sp.cls}{Requested fonts not present}}%
-  \else\relax
-\fi
+    \let\nLeftrightarrow\undefined
+    \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
+}{\ClassWarning{sp.cls}{Requested fonts not present}}% \else\relax \fi
 %
 \if@times
   \RequirePackage[T1]{fontenc}% use T1 font encoding
@@ -138,7 +136,6 @@
                 pdfpagelabels,
                 bookmarks=false,
                 pdfstartview=FitH]{hyperref}
-%\RequirePackage{doi-sp}
 \newcommand{\doi}[1]{\url{http://dx.doi.org/#1}}
 \urlstyle{rm}
 \RequirePackage[leqno,tbtags]{amsmath}
@@ -153,7 +150,6 @@
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage[hang,FIGBOTCAP,loose]{subfigure}
-%\RequirePackage{lastpage}
 
 %=====================================================================
 %============================= metadata ==============================
@@ -556,13 +552,13 @@
 %=====================================================================
 %=========================== linguex settings ========================
 
-%\AtBeginDocument{%
-%\ifdefined\NNext% this tests for whether linguex.sty is being used
-%\renewcommand{\refdash}{}\settowidth{\Exlabelwidth}{(110)}%
-%\else
-%\relax%
-%\fi
-%}
+\AtBeginDocument{%
+\ifdefined\NNext% this tests for whether linguex.sty is being used
+\renewcommand{\refdash}{}\settowidth{\Exlabelwidth}{(110)}%
+\else
+\relax%
+\fi
+}
 
 %================================ fin ================================
 %=====================================================================
