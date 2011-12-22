@@ -2,7 +2,7 @@
 % Kai von Fintel, Christopher Potts, and Chung-chieh Shan
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{sp}[2011/09/15 v.0.8 Class for Semantics & Pragmatics, updated to include biblatex option]
+\ProvidesClass{sp}[2011/12/22 v.2.0 Class for Semantics & Pragmatics]
 
 % OUTLINE OF THIS CLASS FILE
 %   option declarations 
