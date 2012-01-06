@@ -554,11 +554,9 @@
 
 \AtBeginDocument{%
 \ifdefined\NNext% this tests for whether linguex.sty is being used
-\renewcommand{\refdash}{}\settowidth{\Exlabelwidth}{(110)}%
-\else
-\relax%
-\fi
-}
+\renewcommand{\firstrefdash}{}\settowidth{\Exlabelwidth}{(110)}% \else
+\relax% 
+\fi }
 
 %================================ fin ================================
 %=====================================================================
