@@ -2,7 +2,7 @@
 % Kai von Fintel, Christopher Potts, and Chung-chieh Shan
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{sp}[2011/12/22 v.2.0 Class for Semantics & Pragmatics]
+\ProvidesClass{sp}[2012/01/06 v.2.01 Class for Semantics & Pragmatics]
 
 % OUTLINE OF THIS CLASS FILE
 %   option declarations 
@@ -59,7 +59,9 @@
       \textbullet\encodingdefault{\UseTextSymbol{OMS}\textbullet}
     \let\nLeftrightarrow\undefined
     \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
-}{\ClassWarning{sp.cls}{Requested fonts not present}}% \else\relax \fi
+}{\ClassWarning{sp.cls}{Requested fonts not present}}% 
+\else\relax 
+\fi
 %
 \if@times
   \RequirePackage[T1]{fontenc}% use T1 font encoding
