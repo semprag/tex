@@ -27,6 +27,7 @@
 \newif\if@times\@timestrue
 \newif\if@final\@finalfalse
 \newif\if@biblatex\@biblatexfalse
+\newif\if@linguex\@linguexfalse
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -42,6 +43,7 @@
 \DeclareOption{cm}{\@lucidafalse \@timesfalse \@cmtrue}
 \DeclareOption{final}{\@finaltrue}
 \DeclareOption{biblatex}{\@biblatextrue}
+\DeclareOption{linguex}{\@linguextrue}
 
 \ExecuteOptions{times} % times is the default.
 \ProcessOptions\relax
@@ -554,11 +556,13 @@
 %=====================================================================
 %=========================== linguex settings ========================
 
-\AtBeginDocument{%
-\ifdefined\NNext% this tests for whether linguex.sty is being used
-\renewcommand{\firstrefdash}{}\settowidth{\Exlabelwidth}{(110)}% \else
-\relax% 
-\fi }
+\if@linguex
+    \RequirePackage{linguex}%
+    \renewcommand{\firstrefdash}{}%
+    \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
+\else
+\relax
+\fi
 
 %================================ fin ================================
 %=====================================================================
