@@ -102,12 +102,11 @@
 \if@biblatex
 	\RequirePackage[backend=biber,
 			bibstyle=sp-biblatex,
-			citestyle=authoryear-comp,
-			natbib,
+			citestyle=sp-authoryear-comp,
+%			natbib,
 			maxcitenames=3,
 			maxbibnames=99]{biblatex}
 	\setlength{\bibitemsep}{0pt}
-    \renewcommand*{\nameyeardelim}{\addspace} % this should probably go into our own citestyle
 \else
 	\RequirePackage{natbib}
 	\bibpunct[: ]{(}{)}{,}{a}{}{,}
@@ -117,16 +116,16 @@
 	\bibliographystyle{sp}
 \fi	
 
-\newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
-\newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
-\newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
-\newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
-\newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
-\newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
-\newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
-\newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
-\newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
-\newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
+%\newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+%\newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
+%\newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
+%\newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
+%\newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
+%\newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
+%\newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
+%\newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
+%\newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
+%\newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
 
 
 \RequirePackage[usenames]{color}
