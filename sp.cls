@@ -103,7 +103,6 @@
 	\RequirePackage[backend=biber,
 			bibstyle=sp-biblatex,
 			citestyle=sp-authoryear-comp,
-%			natbib,
 			maxcitenames=3,
 			maxbibnames=99]{biblatex}
 	\setlength{\bibitemsep}{0pt}
@@ -114,19 +113,17 @@
 	\setlength{\bibsep}{0pt}
 	\setlength{\bibhang}{0.25in}
 	\bibliographystyle{sp}
+    \newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+    \newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
+    \newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
+    \newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
+    \newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
+    \newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
+    \newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
+    \newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
+    \newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
+    \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
 \fi	
-
-%\newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
-%\newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
-%\newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
-%\newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
-%\newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
-%\newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
-%\newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
-%\newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
-%\newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
-%\newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
-
 
 \RequirePackage[usenames]{color}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
