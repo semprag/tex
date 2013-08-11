@@ -2,7 +2,7 @@
 % Kai von Fintel, Christopher Potts, and Chung-chieh Shan
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{sp}[2012/01/06 v.2.01 Class for Semantics & Pragmatics]
+\ProvidesClass{sp}[2013-08-11 v.2.1 Class for Semantics & Pragmatics]
 
 % OUTLINE OF THIS CLASS FILE
 %   option declarations 
@@ -101,11 +101,10 @@
 
 \if@biblatex
 	\RequirePackage[backend=biber,
-			bibstyle=sp-biblatex,
+			bibstyle=biblatex-sp-unified,
 			citestyle=sp-authoryear-comp,
 			maxcitenames=3,
 			maxbibnames=99]{biblatex}
-	\setlength{\bibitemsep}{0pt}
 \else
 	\RequirePackage{natbib}
 	\bibpunct[: ]{(}{)}{,}{a}{}{,}
