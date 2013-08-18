@@ -2,7 +2,7 @@
 % Kai von Fintel, Christopher Potts, and Chung-chieh Shan
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesClass{sp}[2013-08-11 v.2.1 Class for Semantics & Pragmatics]
+\ProvidesClass{sp}[2013/08/11 v.2.1 Class for Semantics & Pragmatics]
 
 % OUTLINE OF THIS CLASS FILE
 %   option declarations 
