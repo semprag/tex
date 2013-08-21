@@ -87,6 +87,11 @@
   \else\relax
 \fi
 
+% Strong widow and orphan control
+
+\clubpenalty10000
+\widowpenalty10000
+
 %=====================================================================
 %========================= required packages =========================
 
