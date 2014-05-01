@@ -103,6 +103,7 @@
   \RequirePackage[final,protrusion={true,compatibility}]{microtype}
 }{}
 \RequirePackage{ifthen}
+\RequirePackage[hyphens]{url}
 
 \if@biblatex
 	\RequirePackage[backend=biber,
