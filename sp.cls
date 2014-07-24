@@ -130,7 +130,7 @@
     \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
 \fi	
 
-\RequirePackage[usenames]{xcolor}
+\RequirePackage[usenames,dvipsnames]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
 \RequirePackage[colorlinks,breaklinks,
                 linkcolor=splinkcolor, 
