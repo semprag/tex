@@ -28,6 +28,7 @@
 \newif\if@final\@finalfalse
 \newif\if@biblatex\@biblatexfalse
 \newif\if@linguex\@linguexfalse
+\newif\if@expex\@expexfalse
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -44,6 +45,7 @@
 \DeclareOption{final}{\@finaltrue}
 \DeclareOption{biblatex}{\@biblatextrue}
 \DeclareOption{linguex}{\@linguextrue}
+\DeclareOption{expex}{\@expextrue}
 
 \ExecuteOptions{times} % times is the default.
 \ProcessOptions\relax
@@ -565,6 +567,23 @@
     \RequirePackage{linguex}%
     \renewcommand{\firstrefdash}{}%
     \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
+\else
+\relax
+\fi
+
+%=====================================================================
+%=========================== expex settings ========================
+
+\if@expex
+    \RequirePackage{expex}%
+    \RequirePackage{epltxfn-sp}%
+    \lingset{%
+      exskip=-0.5 ex, 
+      interpartskip=0.5 ex, 
+      aboveexskip=1ex, 
+      belowexskip=2ex,
+      everygla=}
+    \gathertags
 \else
 \relax
 \fi
