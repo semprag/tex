@@ -221,7 +221,7 @@
 
 % Formats individual <name--institute> pairs inside \author.
 \newcommand{\spauthor}[1]%
-{\begin{minipage}[t]{32pc}\centering
+{\begin{minipage}[t]{16pc}\centering
         #1%
  \end{minipage}\hspace{.5pc plus1pc}%
  \ignorespaces
