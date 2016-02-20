@@ -13,18 +13,18 @@
 %====================================================================
 
 % OUTLINE OF THIS CLASS FILE
-%   option declarations 
-%   required packages 
-%   metadata 
-%   page dimensions 
-%   title 
-%   running headers 
-%   frontmatter 
-%   sectioning 
-%   footnotes 
-%   bibliography 
-%   backmatter 
-%   other environments 
+%   option declarations
+%   required packages
+%   metadata
+%   page dimensions
+%   title
+%   running headers
+%   frontmatter
+%   sectioning
+%   footnotes
+%   bibliography
+%   backmatter
+%   other environments
 %   useful macros
 
 %=====================================================================
@@ -41,7 +41,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 \newcommand{\@sizeoption@err}{\ClassError{sp}
-  {Cannot use size option \CurrentOption} 
+  {Cannot use size option \CurrentOption}
   {The S&P style requires (and automatically loads) 12pt text}}
 
 \DeclareOption{10pt}{\@sizeoption@err}
@@ -63,16 +63,16 @@
  \IfFileExists{lucimatx.sty}{%
     \RequirePackage[romanfamily=bright-osf, scale=0.9, stdmathdigits=true]{lucimatx}%
     \linespread{1.05}%
-    \DeclareMathDelimiter{\llbracket} 
-      {\mathopen}{letters}{130}{largesymbols}{130} 
-    \DeclareMathDelimiter{\rrbracket} 
+    \DeclareMathDelimiter{\llbracket}
+      {\mathopen}{letters}{130}{largesymbols}{130}
+    \DeclareMathDelimiter{\rrbracket}
       {\mathclose}{letters}{131}{largesymbols}{131}
     \normalfont\DeclareTextCommand
       \textbullet\encodingdefault{\UseTextSymbol{OMS}\textbullet}
     \let\nLeftrightarrow\undefined
     \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
-}{\ClassWarning{sp.cls}{Requested fonts not present}}% 
-\else\relax 
+}{\ClassWarning{sp.cls}{Requested fonts not present}}%
+\else\relax
 \fi
 %
 \if@times
@@ -82,7 +82,7 @@
     {\RequirePackage{stmaryrd}}%
     {\newcommand{\llbracket}{\ensuremath{\left [\!\left [}}%
      \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}}
-  \RequirePackage{textcomp}   
+  \RequirePackage{textcomp}
   \RequirePackage{amssymb}
   \else\relax
 \fi
@@ -142,13 +142,13 @@
     \newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
     \newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
     \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
-\fi	
+\fi
 
 \RequirePackage[usenames,dvipsnames]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
 \RequirePackage[colorlinks,breaklinks,
-                linkcolor=splinkcolor, 
-                urlcolor=splinkcolor, 
+                linkcolor=splinkcolor,
+                urlcolor=splinkcolor,
                 citecolor=splinkcolor,
                 filecolor=splinkcolor,
                 plainpages=false,
@@ -180,7 +180,7 @@
 \def\@pdfkeywords{\relax}
 \newcommand{\pdfkeywords}[1]{\gdef\@pdfkeywords{#1}}
 
-\hypersetup{pdfauthor=\@pdfauthor, 
+\hypersetup{pdfauthor=\@pdfauthor,
             pdftitle=\@pdftitle,
             pdfkeywords=\@pdfkeywords}
 
@@ -197,7 +197,7 @@
 
 \def\@splastpage{\relax}
 \newcommand{\splastpage}[1]{\gdef\@splastpage{#1}}
-            
+
 %=====================================================================
 %========================== page dimensions ==========================
 
@@ -252,8 +252,8 @@
 }
 
 % From salt.cls.
-\newskip\onelineskip 
-\onelineskip=\baselineskip 
+\newskip\onelineskip
+\onelineskip=\baselineskip
 \advance\onelineskip by0pt plus 4pt minus 2pt
 
 \def\@maketitle{%
@@ -322,7 +322,7 @@
         }{}% else nothing; closes \IfFileExists
         \else
         % If the ps logo is present,
-        \IfFileExists{sp-logo.ps}{%   
+        \IfFileExists{sp-logo.ps}{%
           % then insert the postscript version,
           \begin{minipage}[c]{.25in}
             \includegraphics[width=.25in]{sp-logo.ps}
@@ -365,7 +365,7 @@
         }{}% else nothing; closes \IfFileExists
         \else
         % If the ps logo is present,
-        \IfFileExists{sp-logo.ps}{%   
+        \IfFileExists{sp-logo.ps}{%
           % then insert the postscript version,
           \begin{minipage}[c]{.25in}
             \includegraphics[width=.25in]{sp-logo}
@@ -400,7 +400,7 @@
   \def\@evenhead{\hfill{\headerfontsize\@shortauthor}}% author names, inner
   \def\@evenfoot{\hfill{\headerfontsize\ifx\@empty\@articlenumber\else\@articlenumber:\fi\thepage}\hfill}% centered pg no
 }
-\pagestyle{spheadings}         
+\pagestyle{spheadings}
 
 %=====================================================================
 %=========================== final typeset ===========================
@@ -410,9 +410,9 @@
 \RequirePackage{sp-hyperxmp}
 \splogo
 \AtBeginDocument{\firstpagefinalheadings}
-\else            
+\else
 \nosplogo
-\AtBeginDocument{\thispagestyle{plain}} 
+\AtBeginDocument{\thispagestyle{plain}}
 \fi
 
 
@@ -585,9 +585,9 @@
 \if@expex
     \RequirePackage{expex}%
     \lingset{%
-      exskip=-0.5 ex, 
-      interpartskip=0.5 ex, 
-      aboveexskip=1ex, 
+      exskip=-0.5 ex,
+      interpartskip=0.5 ex,
+      aboveexskip=1ex,
       belowexskip=2ex,
       everygla=}
     \makeatletter
@@ -611,4 +611,3 @@
 
 %================================ fin ================================
 %=====================================================================
-
