@@ -440,9 +440,13 @@
 \item\relax}%
 {\endlist}
 
+% \ignorespacesandpars inspired by http://tex.stackexchange.com/a/179034/3642
+\def\ignorespacesandpars{%
+  \@ifnextchar\par{\expandafter\ignorespacesandpars\@gobble}{\ignorespaces}}
+
 \renewenvironment{abstract}%
 {\list{}{\frontmatterspacing{0.25in}}%
-\item\relax\textbf{\abstractname} }%
+\item\relax\textbf{\abstractname}~~\ignorespacesandpars}%
 {\endlist}
 
 \newenvironment{keywords}%
