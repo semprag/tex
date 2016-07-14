@@ -120,28 +120,28 @@
 \RequirePackage[hyphens]{url}
 
 \if@biblatex
-	\RequirePackage[backend=biber,
-			bibstyle=biblatex-sp-unified,
-			citestyle=sp-authoryear-comp,
-			maxcitenames=3,
-			maxbibnames=99]{biblatex}
+  \RequirePackage[backend=biber,
+                  bibstyle=biblatex-sp-unified,
+                  citestyle=sp-authoryear-comp,
+                  maxcitenames=3,
+                  maxbibnames=99]{biblatex}
 \else
-	\RequirePackage{natbib}
-	\bibpunct[: ]{(}{)}{,}{a}{}{,}
-	\newcommand{\BIBand}{\&}
-	\setlength{\bibsep}{0pt}
-	\setlength{\bibhang}{0.25in}
-	\bibliographystyle{sp}
-    \newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
-    \newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
-    \newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
-    \newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
-    \newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
-    \newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
-    \newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
-    \newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
-    \newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
-    \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
+  \RequirePackage{natbib}
+  \bibpunct[: ]{(}{)}{,}{a}{}{,}
+  \newcommand{\BIBand}{\&}
+  \setlength{\bibsep}{0pt}
+  \setlength{\bibhang}{0.25in}
+  \bibliographystyle{sp}
+  \newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+  \newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
+  \newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
+  \newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
+  \newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
+  \newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
+  \newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
+  \newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
+  \newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
+  \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
 \fi
 
 \RequirePackage[usenames,dvipsnames]{xcolor}
@@ -228,11 +228,9 @@
 %============================== title ================================
 
 % Formats individual <name--institute> pairs inside \author.
-\newcommand{\spauthor}[1]%
-{\begin{minipage}[t]{16pc}\centering
-        #1%
- \end{minipage}\hspace{.5pc plus1pc}%
- \ignorespaces
+\newcommand{\spauthor}[1]{%
+  \begin{minipage}[t]{16pc}\centering #1\end{minipage}\hspace{.5pc plus1pc}%
+  \ignorespaces
 }
 
 \renewcommand*{\title}[2][]{\gdef\@shorttitle{#1}\gdef\@title{#2}}
@@ -281,8 +279,8 @@
 % it is elsewhere in the headers so that we have a chance of fitting
 % the whole license on the page.
 \newcommand{\cctext}{{\footnotesize This is an open-access article
-    distributed under the terms of a Creative Commons Attribution License
-    (\http{http://creativecommons.org/licenses/by/3.0/}).}}
+  distributed under the terms of a Creative Commons Attribution License
+  (\http{http://creativecommons.org/licenses/by/3.0/}).}}
 
 % This boolean switch lets the user control whether the logo is
 % included even when the requisite image file is present.  (If it is
@@ -299,8 +297,7 @@
 % Prints publication and copyright info on the first page
 % Also loads info into metadata (superseded by new metadata commands)
 \gdef\@articlenumber{}%
-\newcommand{\firstpageheadings}[6]%
-{
+\newcommand{\firstpageheadings}[6]{
   \gdef\@articlenumber{#2}
   \gdef\@spvolume{#1}
   \gdef\@sparticle{#2}
@@ -345,10 +342,9 @@
     \renewcommand{\@evenfoot}{}%
   }%
   \thispagestyle{spfirstheadings}%
-}%
+}
 
-\newcommand{\firstpagefinalheadings}%
-{
+\newcommand{\firstpagefinalheadings}{
   \def\ps@spfirstheadings{%
     \let\@mkboth\@gobbletwo%
     \renewcommand{\@oddhead}{%
@@ -389,8 +385,7 @@
     \renewcommand{\@evenfoot}{}%
   }%
   \thispagestyle{spfirstheadings}%
-}%
-
+}
 
 % Prints abbreviated article information on non-initial pages.
 \def\ps@spheadings{%
@@ -576,9 +571,9 @@
 %=========================== linguex settings ========================
 
 \if@linguex
-    \RequirePackage{linguex}%
-    \renewcommand{\firstrefdash}{}%
-    \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
+  \RequirePackage{linguex}%
+  \renewcommand{\firstrefdash}{}%
+  \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
 \else
 \relax
 \fi
@@ -587,28 +582,28 @@
 %=========================== expex settings ========================
 
 \if@expex
-    \RequirePackage{expex}%
-    \lingset{%
-      exskip=-0.5 ex,
-      interpartskip=0.5 ex,
-      aboveexskip=1ex,
-      belowexskip=2ex,
-      everygla=}
-    \makeatletter
-        \def\everyfootnote{%
-          \keepexcntlocal
-          \excnt=1
-          \lingset{exskip=1ex,exnotype=roman,sampleexno=,
-          labeltype=alpha,labelanchor=numright,labeloffset=.6em,
-          textoffset=.6em}
-          }
-        \renewcommand{\@makefntext}[1]{%
-            \everyfootnote
-            \parindent=0.25in
-            \noindent \hbox to \z@{\hss{\@thefnmark} \hfil}#1%
-        }
-    \resetatcatcode
-    \gathertags
+  \RequirePackage{expex}%
+  \lingset{%
+    exskip=-0.5 ex,
+    interpartskip=0.5 ex,
+    aboveexskip=1ex,
+    belowexskip=2ex,
+    everygla=}
+  \makeatletter
+    \def\everyfootnote{%
+      \keepexcntlocal
+      \excnt=1
+      \lingset{exskip=1ex,exnotype=roman,sampleexno=,
+      labeltype=alpha,labelanchor=numright,labeloffset=.6em,
+      textoffset=.6em}
+    }
+    \renewcommand{\@makefntext}[1]{%
+      \everyfootnote
+      \parindent=0.25in
+      \noindent \hbox to \z@{\hss{\@thefnmark} \hfil}#1%
+    }
+  \resetatcatcode
+  \gathertags
 \else
 \relax
 \fi
