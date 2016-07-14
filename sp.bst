@@ -1,5 +1,5 @@
 %%% This is sp.bst, coded by Kai von Fintel as the house style for bibliographies in
-%%% the journal Semantics and Pragmatics. The style is based on a style generated 
+%%% the journal Semantics and Pragmatics. The style is based on a style generated
 %%% with custom-bib/merlin.mbs, a system for customizing bibliographic styles
 %%% created by Patrick W Daly. There have been some hand-coded adjustments to that
 %%% style to get the style closer to the Unified Style Sheet for Linguistics Journals.
@@ -7,7 +7,7 @@
 %%% Version 2.2 [2010/09/14] Added colon between address and school for mastersthesis
 %%% Version 2.1 [2010/02/02] Fixed bvolume (error pointed out by Arash Zeini on ling-tex)
 %%% Version 2.0 [2010/01/25] Adopted almost all changes introduced by Bridget Samuels
-%%%							 for unified.bst (http://celxj.org/downloads/unified.bst)
+%%%                          for unified.bst (http://celxj.org/downloads/unified.bst)
 %%% Version 1.9 [2009/07/14] Deleted warning about having both volume and series number
 %%% Version 1.8 [2009/07/03] Dealt with presence of both volume and series + number
 %%% Version 1.7 [2009/07/03] Reverted change to format.bvolume
@@ -18,7 +18,7 @@
 %%% Version 1.5 [2009/06/27] Book titles in incollection entries -> sentence capitalization
 %%% Version 1.4 [2009/06/27] Book titles -> sentence capitalization
 %%% Version 1.3 [2009/06/26] Reverted formatting of editors when no author
-%%% Version 1.2 [2009/06/26] Period after vol(num) in journal articles instead of colon. 
+%%% Version 1.2 [2009/06/26] Period after vol(num) in journal articles instead of colon.
 %%%                          Comma added -> Editor (ed.),
 %%% Version 1.1 [2009/05/22] Deleted stray space after (ed.)
 %%% Version 1.0 [2007/11/27] First public version
@@ -680,7 +680,7 @@ FUNCTION {format.number.series}
             { number "number" bibinfo.check }
             { add.blank "(" *
               series "series" bibinfo.check *
-              number tie.or.space.prefix "number" bibinfo.check * 
+              number tie.or.space.prefix "number" bibinfo.check *
               ")" *
             }
           if$
