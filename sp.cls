@@ -551,8 +551,6 @@
 %=====================================================================
 %=========================== useful macros ===========================
 
-\newcommand{\spj}{\emph{S\&P}\xspace}
-
 \def\co{\colon\thinspace}
 
 \DeclareRobustCommand\dash{%
