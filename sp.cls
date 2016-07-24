@@ -72,7 +72,6 @@
     \let\nLeftrightarrow\undefined
     \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
 }{\ClassWarning{sp.cls}{Requested fonts not present}}%
-\else\relax
 \fi
 %
 \if@times
@@ -84,7 +83,6 @@
      \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}}
   \RequirePackage{textcomp}
   \RequirePackage{amssymb}
-  \else\relax
 \fi
 %
 \if@cm
@@ -94,7 +92,6 @@
    \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}}
   \RequirePackage{amssymb}
   \RequirePackage{textcomp}
-  \else\relax
 \fi
 
 % Strong widow and orphan control
@@ -162,7 +159,6 @@
 % breakurl package, else don't load it.
 \RequirePackage{ifpdf}
 \ifpdf
-  \relax
 \else
   \RequirePackage{breakurl}
 \fi
@@ -572,8 +568,6 @@
   \RequirePackage{linguex}%
   \renewcommand{\firstrefdash}{}%
   \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
-\else
-\relax
 \fi
 
 %=====================================================================
@@ -602,8 +596,6 @@
     }
   \resetatcatcode
   \gathertags
-\else
-\relax
 \fi
 
 %================================ fin ================================
