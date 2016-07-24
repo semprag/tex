@@ -576,25 +576,23 @@
 \if@expex
   \RequirePackage{expex}%
   \lingset{%
-    exskip=-0.5 ex,
-    interpartskip=0.5 ex,
+    exskip=-0.5ex,
+    interpartskip=0.5ex,
     aboveexskip=1ex,
     belowexskip=2ex,
     everygla=}
-  \makeatletter
-    \def\everyfootnote{%
-      \keepexcntlocal
-      \excnt=1
-      \lingset{exskip=1ex,exnotype=roman,sampleexno=,
-      labeltype=alpha,labelanchor=numright,labeloffset=.6em,
-      textoffset=.6em}
-    }
-    \renewcommand{\@makefntext}[1]{%
-      \everyfootnote
-      \parindent=0.25in
-      \noindent \hbox to \z@{\hss{\@thefnmark} \hfil}#1%
-    }
-  \resetatcatcode
+  \def\everyfootnote{%
+    \keepexcntlocal
+    \excnt=1
+    \lingset{exskip=1ex,exnotype=roman,sampleexno=,
+    labeltype=alpha,labelanchor=numright,labeloffset=.6em,
+    textoffset=.6em}
+  }
+  \renewcommand{\@makefntext}[1]{%
+    \everyfootnote
+    \parindent=0.25in
+    \noindent \hbox to \z@{\hss{\@thefnmark} \hfil}#1%
+  }
   \gathertags
 \fi
 
