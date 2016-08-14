@@ -107,6 +107,40 @@
 %========================= required packages =========================
 
 \RequirePackage[utf8]{inputenc}
+% Misc
+\DeclareUnicodeCharacter{301}{\'}
+\DeclareUnicodeCharacter{27E8}{\langle}
+\DeclareUnicodeCharacter{27E9}{\rangle}
+\DeclareUnicodeCharacter{1CE}{\v a}
+% The following shims are based on https://tex.stackexchange.com/a/203804
+% Welsh
+\DeclareUnicodeCharacter{174}{\^W}
+\DeclareUnicodeCharacter{175}{\^w}
+\DeclareUnicodeCharacter{176}{\^Y}
+\DeclareUnicodeCharacter{177}{\^y}
+% Latin vowels with breve
+\DeclareUnicodeCharacter{114}{\u E}
+\DeclareUnicodeCharacter{115}{\u e}
+\DeclareUnicodeCharacter{12C}{\u I}
+\DeclareUnicodeCharacter{12D}{\u\i}
+\DeclareUnicodeCharacter{14E}{\u O}
+\DeclareUnicodeCharacter{14F}{\u o}
+\DeclareUnicodeCharacter{16C}{\u U}
+\DeclareUnicodeCharacter{16D}{\u u}
+% Latin vowels with macron
+\DeclareUnicodeCharacter{100}{\=A}
+\DeclareUnicodeCharacter{101}{\=a}
+\DeclareUnicodeCharacter{112}{\=E}
+\DeclareUnicodeCharacter{113}{\=e}
+\DeclareUnicodeCharacter{12A}{\=I}
+\DeclareUnicodeCharacter{12B}{\=\i}
+\DeclareUnicodeCharacter{14C}{\=O}
+\DeclareUnicodeCharacter{14D}{\=o}
+\DeclareUnicodeCharacter{16A}{\=U}
+\DeclareUnicodeCharacter{16B}{\=u}
+\DeclareUnicodeCharacter{232}{\=Y}
+\DeclareUnicodeCharacter{233}{\=y}
+
 \RequirePackage{xspace}
 % microtype handles punctuation at the right margin. We want it for
 % the final product, but it's okay if authors lack it.
