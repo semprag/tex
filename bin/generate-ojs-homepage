@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+# Run like:
+#   ./generate-ojs-homepage forthcoming.html | pbcopy
+
+CACHEDIR=${TMPDIR-/tmp/}homepage
+mkdir -p $CACHEDIR
+
+volume_contents() {
+  # download the file if needed
+  wget -nc http://semprag.org/issue/view/sp.$1 -P $CACHEDIR
+  # using https://github.com/ericchiang/pup for html extraction
+  # pull out the volume number + year
+  echo '<h3>'
+  pup '#main h2 text{}' -f $CACHEDIR/sp.$1
+  echo '</h3>'
+  # pull out the table of contents sections
+  pup '[class^="toc"]' -f $CACHEDIR/sp.$1
+}
+
+separator() {
+  echo '<div class="separator"></div>'
+}
+
+volume_contents 9
+[[ -e $1 ]] && cat $1
+separator
+volume_contents 8
+separator
+volume_contents 7
+separator
+volume_contents 6
+separator
+volume_contents 5
+separator
+volume_contents 4
+separator
+volume_contents 3
+separator
+echo 'For earlier volumes, see <a href="http://semprag.org/issue/archive">the Archives tab</a>.'
