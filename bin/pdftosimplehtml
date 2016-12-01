@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ "${@---help}" =~ '--help' ]]; then
+  echo "Usage: pdftosimplehtml article.pdf > article.html"
+  exit 1
+fi
+
+# sed commands:
+# 1) replace no-break spaces with normal spaces
+# 2) replace visual line break tags with spaces
+# 3) remove anchor tags
+# 4) shrink styling away from whitespace
+
+pdftohtml -stdout $1 | sed \
+  -e 's/&#160;/ /g' \
+  -e 's:<br/>: :g' \
+  -e 's:<a[^>]*>::g' -e 's:</a>::g' \
+  -e 's: </i>:</i> :g'
