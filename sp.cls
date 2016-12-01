@@ -120,7 +120,6 @@
 \IfFileExists{microtype.sty}{%
   \RequirePackage[final,protrusion={true,compatibility}]{microtype}
 }{}
-\RequirePackage{ifthen}
 \RequirePackage[hyphens]{url}
 
 % if [biblatex] is requested, check that biblatex-sp-unified is available;
@@ -301,15 +300,6 @@
   distributed under the terms of a Creative Commons Attribution License
   (\http{http://creativecommons.org/licenses/by/3.0/}).}}
 
-% This boolean switch lets the user control whether the logo is
-% included even when the requisite image file is present.  (If it is
-% missing, then the class file accommodates that no matter how the
-% switch is set.)
-\newboolean{logo}
-\setboolean{logo}{true} % Default true (include logo if it's present)
-\newcommand{\splogo}{\setboolean{logo}{true}}
-\newcommand{\nosplogo}{\setboolean{logo}{false}}
-
 % This sets the font size for the header and footer on all pages.
 \newcommand{\headerfontsize}{\footnotesize}
 
@@ -321,34 +311,17 @@
     \let\@mkboth\@gobbletwo%
     \renewcommand{\@oddhead}{%
       \headerfontsize%
-      % If the switch is set to "include image",
-      \ifthenelse{\boolean{logo}}{%
-        \ifpdf
-        % If the pdf logo is present,
-        \IfFileExists{sp-logo.pdf}{%
-          % then insert the pdf version,
-          \begin{minipage}[c]{.25in}
-            \includegraphics[width=.25in]{sp-logo}
-          \end{minipage}%
-        }{}% else nothing; closes \IfFileExists
-        \else
-        % If the ps logo is present,
-        \IfFileExists{sp-logo.ps}{%
-          % then insert the postscript version,
-          \begin{minipage}[c]{.25in}
-            \includegraphics[width=.25in]{sp-logo}
-          \end{minipage}%
-        }{}% else, nothing; closes \IfFileExists
-        \fi % close \ifpdf
-      }{}% closes \ifthenelse
+      \begin{minipage}[c]{.25in}
+        \includegraphics[width=\textwidth]{sp-logo}
+      \end{minipage}%
       \begin{minipage}[c]{5.25in}
         \href{http://semprag.org/}{Semantics \& Pragmatics} Volume \@spvolume, Article \@sparticle: 1--\@splastpage, \@spyear\\
         \href{http://dx.doi.org/\@spdoi}{http://dx.doi.org/\@spdoi}
       \end{minipage}%
-      \gdef\@articlenumber{\@sparticle}
+      \gdef\@articlenumber{\@sparticle}%
     }%
     \renewcommand{\@oddfoot}{%
-      \begin{minipage}[c]{1\textwidth}%
+      \begin{minipage}[c]{\textwidth}%
         \footnotesize\copyright \@spyear\ \@shortauthor\\
         \cctext
       \end{minipage}%
@@ -375,10 +348,8 @@
 
 \if@final
 \RequirePackage{sp-hyperxmp}
-\splogo
 \AtBeginDocument{\firstpagefinalheadings}
 \else
-\nosplogo
 \AtBeginDocument{\thispagestyle{plain}}
 \fi
 
