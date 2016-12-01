@@ -213,7 +213,7 @@
 
 \def\@spdoi{10.3765/sp.\@spvolume.\@sparticle}
 
-\def\@splastpage{\relax}
+\def\@splastpage{}
 \newcommand{\splastpage}[1]{\gdef\@splastpage{#1}}
 
 %=====================================================================
@@ -315,7 +315,10 @@
         \includegraphics[width=\textwidth]{sp-logo}
       \end{minipage}%
       \begin{minipage}[c]{5.25in}
-        \href{http://semprag.org/}{Semantics \& Pragmatics} Volume \@spvolume, Article \@sparticle: 1--\@splastpage, \@spyear\\
+        \href{http://semprag.org/}{Semantics \& Pragmatics}
+          Volume \@spvolume,
+          Article \@sparticle\ifx\@empty\@splastpage\else: 1--\@splastpage\fi,
+          \@spyear\\
         \href{http://dx.doi.org/\@spdoi}{http://dx.doi.org/\@spdoi}
       \end{minipage}%
       \gdef\@articlenumber{\@sparticle}%
