@@ -316,53 +316,6 @@
 % Prints publication and copyright info on the first page
 % Also loads info into metadata (superseded by new metadata commands)
 \gdef\@articlenumber{}%
-\newcommand{\firstpageheadings}[6]{
-  \gdef\@articlenumber{#2}
-  \gdef\@spvolume{#1}
-  \gdef\@sparticle{#2}
-  \gdef\@splastpage{#3}
-  \gdef\@spyear{#4}
-  \def\ps@spfirstheadings{%
-    \let\@mkboth\@gobbletwo%
-    \renewcommand{\@oddhead}{%
-      \headerfontsize%
-      % If the switch is set to "include image",
-      \ifthenelse{\boolean{logo}}{%
-        \ifpdf
-        % If the pdf logo is present,
-        \IfFileExists{sp-logo.pdf}{%
-          % then insert the pdf version,
-          \begin{minipage}[c]{.25in}
-            \includegraphics[width=.25in]{sp-logo.pdf}
-          \end{minipage}%
-        }{}% else nothing; closes \IfFileExists
-        \else
-        % If the ps logo is present,
-        \IfFileExists{sp-logo.ps}{%
-          % then insert the postscript version,
-          \begin{minipage}[c]{.25in}
-            \includegraphics[width=.25in]{sp-logo.ps}
-          \end{minipage}%
-        }{}% else, nothing; closes \IfFileExists
-        \fi % close \ifpdf
-      }{}% closes \ifthenelse
-      \begin{minipage}[c]{5.25in}
-        \href{http://semprag.org/}{Semantics \& Pragmatics} Volume \@spvolume, Article \@sparticle: 1--\@splastpage, \@spyear\\
-        \href{http://dx.doi.org/10.3765/sp.\@spvolume.\@sparticle}{http://dx.doi.org/10.3765/sp.\@spvolume.\@sparticle}
-      \end{minipage}%
-    }%
-    \renewcommand{\@oddfoot}{%
-      \begin{minipage}[c]{1\textwidth}%
-        \footnotesize\copyright \@spyear\ \@shortauthor\\
-        \cctext
-      \end{minipage}%
-    }%
-    \renewcommand{\@evenhead}{}%
-    \renewcommand{\@evenfoot}{}%
-  }%
-  \thispagestyle{spfirstheadings}%
-}
-
 \newcommand{\firstpagefinalheadings}{
   \def\ps@spfirstheadings{%
     \let\@mkboth\@gobbletwo%
