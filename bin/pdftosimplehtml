@@ -11,7 +11,7 @@ fi
 # 3) remove anchor tags
 # 4) shrink styling away from whitespace
 
-pdftohtml -stdout $1 | sed \
+pdftohtml -i -stdout $1 | sed \
   -e 's/&#160;/ /g' \
   -e 's:<br/>: :g' \
   -e 's:<a[^>]*>::g' -e 's:</a>::g' \
