@@ -2,6 +2,9 @@
 
 if [[ "${@---help}" =~ '--help' ]]; then
   echo "Usage: pdftosimplehtml article.pdf > article.html"
+  echo
+  echo "This calls Poppler's pdftohtml with the -stdout option and pipes that"
+  echo "through several sed expressions to clean up the resulting HTML."
   exit 1
 fi
 
