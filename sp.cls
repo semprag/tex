@@ -60,9 +60,9 @@
 \LoadClass[12pt,twoside]{article}
 
 \if@lucida
- \IfFileExists{lucimatx.sty}{%
-    \RequirePackage[romanfamily=bright-osf, scale=0.9, stdmathdigits=true]{lucimatx}%
-    \linespread{1.05}%
+  \IfFileExists{lucimatx.sty}{
+    \RequirePackage[romanfamily=bright-osf,scale=0.9,stdmathdigits=true]{lucimatx}
+    \linespread{1.05}
     \DeclareMathDelimiter{\llbracket}
       {\mathopen}{letters}{130}{largesymbols}{130}
     \DeclareMathDelimiter{\rrbracket}
@@ -71,25 +71,27 @@
       \textbullet\encodingdefault{\UseTextSymbol{OMS}\textbullet}
     \let\nLeftrightarrow\undefined
     \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
-}{\ClassWarning{sp.cls}{Requested fonts not present}}%
+  }{
+    \ClassWarning{sp.cls}{Requested fonts not present}
+  }
 \fi
 %
 \if@times
   \RequirePackage[T1]{fontenc}% use T1 font encoding
   \IfFileExists{mathptmx.sty}{\RequirePackage{mathptmx}}{}
-  \IfFileExists{stmaryrd.sty}%
-    {\RequirePackage{stmaryrd}}%
-    {\newcommand{\llbracket}{\ensuremath{\left [\!\left [}}%
-     \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}}
+  \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
+    \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
+    \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}
+  }
   \RequirePackage{textcomp}
   \RequirePackage{amssymb}
 \fi
 %
 \if@cm
-\IfFileExists{stmaryrd.sty}%
-  {\RequirePackage{stmaryrd}}%
-  {\newcommand{\llbracket}{\ensuremath{\left [\!\left [}}%
-   \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}}
+  \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
+    \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
+    \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}
+  }
   \RequirePackage{amssymb}
   \RequirePackage{textcomp}
 \fi
