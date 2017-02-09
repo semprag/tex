@@ -72,7 +72,8 @@
     \let\nLeftrightarrow\undefined
     \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
   }{
-    \ClassWarning{sp.cls}{Requested fonts not present}
+    \ClassWarning{sp.cls}{Lucida requested but cannot find font; falling back to Times}
+    \@timestrue
   }
 \fi
 %
