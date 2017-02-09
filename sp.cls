@@ -155,6 +155,13 @@
   \newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
   \newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
   \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
+  % \addbibresource{} and \printbibliography are the names of standard
+  % BibLaTeX macros, which are shimmed here to call out to normal BibTeX.
+  \def\@bibresources{}
+  \newcommand{\addbibresource}[1]{%
+    % \xdef is like \gdef but immediately expands the second argument
+    \xdef\@bibresources{\@bibresources\ifx\@empty\@bibresources\else,\fi#1}}
+  \newcommand{\printbibliography}{\bibliography{\@bibresources}}
 \fi
 
 \RequirePackage[usenames,dvipsnames]{xcolor}
