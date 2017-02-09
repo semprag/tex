@@ -588,9 +588,15 @@
   \def\everyfootnote{%
     \keepexcntlocal
     \excnt=1
-    \lingset{exskip=1ex,exnotype=roman,sampleexno=,
-    labeltype=alpha,labelanchor=numright,labeloffset=.6em,
-    textoffset=.6em}
+    % exskip: sets aboveexskip and belowexskip at the same time
+    % exnotype: sets the family for root example numbering (default: arabic)
+    %           (must be one of: arabic, chapter.arabic, or roman)
+    % sampleexno: sets root example to constant width (default: no constant width)
+    % labeltype: sets the family for subexample numbering (default: alpha)
+    % labelanchor: sets left alignment of subexample (default: numright)
+    % labeloffset: left margin of subexample numbering (default: 1em)
+    % textoffset: distance between subexample numbering and text (default: 1em)
+    \lingset{exskip=1ex,exnotype=roman,labeloffset=.6em,textoffset=.6em}
   }
   \renewcommand{\@makefntext}[1]{%
     \everyfootnote
