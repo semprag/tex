@@ -123,6 +123,15 @@
 \RequirePackage{ifthen}
 \RequirePackage[hyphens]{url}
 
+% if [biblatex] is requested, check that biblatex-sp-unified is available;
+% if the style cannot be found, fallback to BibTeX.
+\if@biblatex
+  \IfFileExists{biblatex-sp-unified.bbx}{}{
+    \ClassWarning{sp.cls}{BibLaTeX requested but cannot find style; falling back to BibTeX}
+    \@biblatexfalse
+  }
+\fi
+
 \if@biblatex
   \RequirePackage[backend=biber,
                   bibstyle=biblatex-sp-unified,
