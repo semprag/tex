@@ -293,13 +293,6 @@
 %=====================================================================
 %========================== running headers ==========================
 
-% Creative commons license text.  The font is even smaller here than
-% it is elsewhere in the headers so that we have a chance of fitting
-% the whole license on the page.
-\newcommand{\cctext}{{\footnotesize This is an open-access article
-  distributed under the terms of a Creative Commons Attribution License
-  (\url{https://creativecommons.org/licenses/by/3.0/}).}}
-
 % This sets the font size for the header and footer on all pages.
 \newcommand{\headerfontsize}{\footnotesize}
 
@@ -325,8 +318,12 @@
     }%
     \renewcommand{\@oddfoot}{%
       \begin{minipage}[c]{\textwidth}%
-        \footnotesize\copyright \@spyear\ \@shortauthor\\
-        \cctext
+        \headerfontsize%
+        \copyright \@spyear\ \@shortauthor\\
+        % Creative commons license text.
+        This is an open-access article distributed under the terms of a
+        Creative Commons Attribution License
+        (\url{https://creativecommons.org/licenses/by/3.0/}).
       \end{minipage}%
     }%
     \renewcommand{\@evenhead}{}%
