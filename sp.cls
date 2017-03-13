@@ -298,7 +298,7 @@
 % the whole license on the page.
 \newcommand{\cctext}{{\footnotesize This is an open-access article
   distributed under the terms of a Creative Commons Attribution License
-  (\http{http://creativecommons.org/licenses/by/3.0/}).}}
+  (\url{https://creativecommons.org/licenses/by/3.0/}).}}
 
 % This sets the font size for the header and footer on all pages.
 \newcommand{\headerfontsize}{\footnotesize}
