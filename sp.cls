@@ -193,13 +193,13 @@
             pdftitle=\@pdftitle,
             pdfkeywords=\@pdfkeywords}
 
-\def\@spvolume{\relax}
+\def\@spvolume{}
 \newcommand{\spvolume}[1]{\gdef\@spvolume{#1}}
 
-\def\@sparticle{\relax}
+\def\@sparticle{}
 \newcommand{\sparticle}[1]{\gdef\@sparticle{#1}}
 
-\def\@spyear{\relax}
+\def\@spyear{}
 \newcommand{\spyear}[1]{\gdef\@spyear{#1}}
 
 \def\@spdoi{10.3765/sp.\@spvolume.\@sparticle}
@@ -284,53 +284,48 @@
 %=====================================================================
 %========================== running headers ==========================
 
-% This sets the font size for the header and footer on all pages.
-\newcommand{\headerfontsize}{\footnotesize}
-
 % Prints publication and copyright info on the first page
-% Also loads info into metadata (superseded by new metadata commands)
-\gdef\@articlenumber{}%
-\newcommand{\firstpagefinalheadings}{
-  \def\ps@spfirstheadings{%
-    \let\@mkboth\@gobbletwo%
-    \renewcommand{\@oddhead}{%
-      \headerfontsize%
-      \begin{minipage}[c]{.25in}
-        \includegraphics[width=\textwidth]{sp-logo}
-      \end{minipage}%
-      \begin{minipage}[c]{5.25in}
-        \href{http://semprag.org/}{Semantics \& Pragmatics}
-          Volume \@spvolume,
-          Article \@sparticle\ifx\@empty\@splastpage\else: 1--\@splastpage\fi,
-          \@spyear\\
-        \href{http://dx.doi.org/\@spdoi}{http://dx.doi.org/\@spdoi}
-      \end{minipage}%
-      \gdef\@articlenumber{\@sparticle}%
-    }%
-    \renewcommand{\@oddfoot}{%
-      \begin{minipage}[c]{\textwidth}%
-        \headerfontsize%
-        \copyright \@spyear\ \@shortauthor\\
-        % Creative commons license text.
-        This is an open-access article distributed under the terms of a
-        Creative Commons Attribution License
-        (\url{https://creativecommons.org/licenses/by/3.0/}).
-      \end{minipage}%
-    }%
-    \renewcommand{\@evenhead}{}%
-    \renewcommand{\@evenfoot}{}%
-  }%
-  \thispagestyle{spfirstheadings}%
+\def\ps@spfirstheadings{
+  \let\@mkboth\@gobbletwo
+  \def\@oddhead{%
+    \footnotesize
+    \begin{minipage}[c]{.25in}
+      \includegraphics[width=\textwidth]{sp-logo}
+    \end{minipage}%
+    \begin{minipage}[c]{5.25in}
+      \href{http://semprag.org/}{Semantics \& Pragmatics}
+        Volume \@spvolume,
+        Article \@sparticle\ifx\@empty\@splastpage\else: 1--\@splastpage\fi,
+        \@spyear\\
+      \href{http://dx.doi.org/\@spdoi}{http://dx.doi.org/\@spdoi}
+    \end{minipage}%
+  }
+  \def\@oddfoot{%
+    \footnotesize
+    \begin{minipage}[c]{\textwidth}
+      \copyright \@spyear\ \@shortauthor\\
+      % Creative commons license text.
+      This is an open-access article distributed under the terms of a
+      Creative Commons Attribution License
+      (\url{https://creativecommons.org/licenses/by/3.0/}).
+    \end{minipage}%
+  }
+  \def\@evenhead{}
+  \def\@evenfoot{}
 }
 
 % Prints abbreviated article information on non-initial pages.
-\def\ps@spheadings{%
-  \let\@mkboth\@gobbletwo%
-  \def\@oddhead{{\headerfontsize \@shorttitle}\hfill}% short title, inner
-  \def\@oddfoot{\hfill{\headerfontsize\ifx\@empty\@articlenumber\else\@articlenumber:\fi\thepage}\hfill}% centered pg no
-  \def\@evenhead{\hfill{\headerfontsize\@shortauthor}}% author names, inner
-  \def\@evenfoot{\hfill{\headerfontsize\ifx\@empty\@articlenumber\else\@articlenumber:\fi\thepage}\hfill}% centered pg no
+\def\ps@spheadings{
+  \let\@mkboth\@gobbletwo
+  % short title on inner (left) side
+  \def\@oddhead{\footnotesize\@shorttitle\hfill}
+  % author name(s) on inner (right) side
+  \def\@evenhead{\footnotesize\hfill\@shortauthor}
+  % centered page number (with article prefix if available) on all pages
+  \def\@oddfoot{\footnotesize\hfill\ifx\@empty\@sparticle\else\@sparticle:\fi\thepage\hfill}
+  \let\@evenfoot\@oddfoot
 }
+% set spheadings as default pagestyle throughout document
 \pagestyle{spheadings}
 
 %=====================================================================
@@ -338,10 +333,11 @@
 
 
 \if@final
+% load global variables into metadata
 \RequirePackage{sp-hyperxmp}
-\AtBeginDocument{\firstpagefinalheadings}
+\thispagestyle{spfirstheadings}
 \else
-\AtBeginDocument{\thispagestyle{plain}}
+\thispagestyle{empty}
 \fi
 
 
