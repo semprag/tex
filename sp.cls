@@ -60,41 +60,32 @@
 \LoadClass[12pt,twoside]{article}
 
 \if@lucida
-  \IfFileExists{lucimatx.sty}{
-    \RequirePackage[romanfamily=bright-osf,scale=0.9,stdmathdigits=true]{lucimatx}
-    \linespread{1.05}
-    \DeclareMathDelimiter{\llbracket}
-      {\mathopen}{letters}{130}{largesymbols}{130}
-    \DeclareMathDelimiter{\rrbracket}
-      {\mathclose}{letters}{131}{largesymbols}{131}
-    \normalfont\DeclareTextCommand
-      \textbullet\encodingdefault{\UseTextSymbol{OMS}\textbullet}
-    \let\nLeftrightarrow\undefined
-    \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105}
-  }{
+  \IfFileExists{lucimatx.sty}{}{
     \ClassWarning{sp.cls}{Lucida requested but cannot find font; falling back to Times}
-    \@timestrue
+    \@lucidafalse \@timestrue
   }
+\fi
+
+\if@lucida
+  \RequirePackage[romanfamily=bright-osf,scale=0.9,stdmathdigits=true]{lucimatx}
+  \linespread{1.05}
+  \let\llbracket\ldbrack
+  \let\rrbracket\rdbrack
+  \DeclareTextCommand{\textbullet}{\encodingdefault}{\UseTextSymbol{OMS}\textbullet} % the default is tiny
+  \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
+\else
+  \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
+    \ClassWarning{sp.cls}{stmaryrd required but not available; double brackets may be rendered incorrectly}
+    \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
+    \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}
+  }
+  \RequirePackage{textcomp}
+  \RequirePackage{amssymb}
 \fi
 %
 \if@times
-  \RequirePackage[T1]{fontenc}% use T1 font encoding
-  \IfFileExists{mathptmx.sty}{\RequirePackage{mathptmx}}{}
-  \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
-    \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
-    \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}
-  }
-  \RequirePackage{textcomp}
-  \RequirePackage{amssymb}
-\fi
-%
-\if@cm
-  \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
-    \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
-    \newcommand{\rrbracket}{\ensuremath{\right ]\!\right ]}}
-  }
-  \RequirePackage{amssymb}
-  \RequirePackage{textcomp}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{mathptmx}
 \fi
 
 % Strong widow and orphan control
