@@ -335,10 +335,8 @@
   \end{trivlist}
   \vspace*{\stretch{2}}
   \newpage
-  % reset page numbering after this cover
+  % reset page numbering after the cover so that even/odd sides match the original
   \setcounter{page}{1}
-  % suppress normal headers on the actual first page
-  \thispagestyle{empty}
 }
 
 % Prints "EARLY ACCESS" vertically in outer margins
@@ -383,6 +381,7 @@
   \thispagestyle{spfirstheadings}
 \else
   \if@early
+    \RequirePackage{pdfpages}
     \AtBeginDocument{\earlyaccesscover}
   \else
     \thispagestyle{empty}
