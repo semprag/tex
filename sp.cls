@@ -33,7 +33,6 @@
 \newif\if@lucida\@lucidafalse
 \newif\if@cm\@cmtrue
 \newif\if@times\@timestrue
-\newif\if@early\@earlyfalse
 \newif\if@final\@finalfalse
 \newif\if@biblatex\@biblatexfalse
 \newif\if@linguex\@linguexfalse
@@ -51,7 +50,6 @@
 \DeclareOption{lucida}{\@lucidatrue \@timesfalse \@cmfalse }
 \DeclareOption{times}{\@lucidafalse \@timestrue \@cmfalse }
 \DeclareOption{cm}{\@lucidafalse \@timesfalse \@cmtrue}
-\DeclareOption{early}{\@earlytrue}
 \DeclareOption{final}{\@finaltrue}
 \DeclareOption{biblatex}{\@biblatextrue}
 \DeclareOption{linguex}{\@linguextrue}
@@ -316,29 +314,6 @@
   \def\@evenfoot{}
 }
 
-\newcommand{\earlyaccesscover}{
-  \thispagestyle{spfirstheadings}
-  \vspace*{\fill}
-  \begin{trivlist}
-    \setlength{\itemsep}{8pt}
-    % TODO: refactor \title and \author commands to split out the details
-    % that are hacked out with no-op's and trimming below
-    \renewcommand{\thanks}[1]{\ignorespaces}
-    \newcommand{\institute}[1]{\unskip\ignorespaces}
-    \renewcommand{\spauthor}[1]{\renewcommand{\\}{\ignorespaces}##1}
-    \newcommand{\AND}{, }
-    \item This is an \textsc{early access} version of
-    \item \@author. \@spyear. \@title.
-          \emph{Semantics and Pragmatics} \@spvolume(\@sparticle). \doi{\@spdoi}.
-    \item This version will be replaced with the final typeset version in due course.\newline
-          Note that page numbers will change, so cite with caution.
-  \end{trivlist}
-  \vspace*{\stretch{2}}
-  \newpage
-  % reset page numbering after the cover so that even/odd sides match the original
-  \setcounter{page}{1}
-}
-
 % Prints "EARLY ACCESS" vertically in outer margins
 \def\ps@earlyaccess{
   \let\@mkboth\@gobbletwo
@@ -371,21 +346,15 @@
 \pagestyle{spheadings}
 
 %=====================================================================
-%======================== early | final typeset ======================
+%=========================== final typeset ===========================
 
 
-% if both [early,final] are provided, [final] takes precedence over [early]
 \if@final
   % load global variables into metadata
   \RequirePackage{sp-hyperxmp}
   \thispagestyle{spfirstheadings}
 \else
-  \if@early
-    \RequirePackage{pdfpages}
-    \AtBeginDocument{\earlyaccesscover}
-  \else
-    \thispagestyle{empty}
-  \fi
+  \thispagestyle{empty}
 \fi
 
 
