@@ -314,23 +314,6 @@
   \def\@evenfoot{}
 }
 
-% Prints "EARLY ACCESS" vertically in outer margins
-\def\ps@earlyaccess{
-  \let\@mkboth\@gobbletwo
-  % push top of header down to where the text normally starts
-  \topmargin=0.5in
-  % expand text width to outside the default
-  \addtolength{\evensidemargin}{-2\marginparsep}
-  \addtolength{\oddsidemargin}{-2\marginparsep}
-  \addtolength{\textwidth}{4\marginparsep}
-  % right=odd
-  \def\@oddhead{\hfill\rotatebox[origin=c]{-90}{\large\textsc{early access}}}
-  \def\@oddfoot{}
-  % left=even
-  \def\@evenhead{\rotatebox[origin=c]{90}{\large\textsc{early access}}\hfill}
-  \def\@evenfoot{}
-}
-
 % Prints abbreviated article information on non-initial pages.
 \def\ps@spheadings{
   \let\@mkboth\@gobbletwo
