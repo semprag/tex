@@ -207,6 +207,9 @@
 \def\@splastpage{}
 \newcommand{\splastpage}[1]{\gdef\@splastpage{#1}}
 
+\def\@copyrightowner{\@shortauthor}
+\newcommand{\copyrightowner}[1]{\gdef\@copyrightowner{#1}}
+
 %=====================================================================
 %========================== page dimensions ==========================
 
@@ -303,7 +306,7 @@
   \def\@oddfoot{%
     \footnotesize
     \begin{minipage}[c]{\textwidth}
-      \copyright \@spyear\ \@shortauthor\\
+      \copyright \@spyear\ \@copyrightowner\\
       % Creative commons license text.
       This is an open-access article distributed under the terms of a
       Creative Commons Attribution License
