@@ -22,8 +22,10 @@ separator() {
   echo '<div class="separator"></div>'
 }
 
-volume_contents 9
+volume_contents 10
 [[ -e $1 ]] && cat $1
+separator
+volume_contents 9
 separator
 volume_contents 8
 separator
