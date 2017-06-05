@@ -165,7 +165,7 @@
                 pdfpagelabels,
                 bookmarks=false,
                 pdfstartview=FitH]{hyperref}
-\newcommand{\doi}[1]{\url{http://dx.doi.org/#1}}
+\newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
 \RequirePackage[leqno,tbtags]{amsmath}
 % If the author is using postscript (discouraged), then load the
@@ -300,7 +300,7 @@
         Volume \@spvolume,
         Article \@sparticle\ifx\@empty\@splastpage\else: 1--\@splastpage\fi,
         \@spyear\\
-      \href{http://dx.doi.org/\@spdoi}{http://dx.doi.org/\@spdoi}
+      \href{https://doi.org/\@spdoi}{https://doi.org/\@spdoi}
     \end{minipage}%
   }
   \def\@oddfoot{%
