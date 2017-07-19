@@ -4,7 +4,7 @@
 %%% created by Patrick W Daly. There have been some hand-coded adjustments to that
 %%% style to get the style closer to the Unified Style Sheet for Linguistics Journals.
 %%%
-%%% Version 2.2 [2010/09/14] Added colon between address and school for mastersthesis
+%%% Version 2.2 [2016/05/24] Removed add.comma from format.bvolume; and removed bbl.volume function to align with formatting
 %%% Version 2.1 [2010/02/02] Fixed bvolume (error pointed out by Arash Zeini on ling-tex)
 %%% Version 2.0 [2010/01/25] Adopted almost all changes introduced by Bridget Samuels
 %%%                          for unified.bst (http://celxj.org/downloads/unified.bst)
@@ -129,6 +129,10 @@ FUNCTION {add.comma}
 }
 
 
+FUNCTION {add.period}
+{  ". " * before.all 'output.state :=
+}
+
 FUNCTION {date.block}
 {
   new.block
@@ -201,8 +205,8 @@ FUNCTION {bbl.edby}
 FUNCTION {bbl.edition}
 { "edn." }
 
-FUNCTION {bbl.volume}
-{ "vol." }
+%FUNCTION {bbl.volume}
+%{ "vol." }
 
 FUNCTION {bbl.of}
 { "of" }
@@ -232,7 +236,7 @@ FUNCTION {bbl.mthesis}
 { "MA thesis" }
 
 FUNCTION {bbl.phdthesis}
-{ "dissertation" }
+{ "PhD dissertation" }
 
 FUNCTION {bbl.first}
 { "1st" }
@@ -654,11 +658,21 @@ FUNCTION {format.btitle}
 { title "title" bibinfo.check
   duplicate$ empty$ 'skip$
     {
-      "t" change.case$
+      %SRM"t" change.case$
       emphasize
     }
   if$
 }
+
+FUNCTION {format.ttitle}
+{ title
+duplicate$ empty$ 'skip$
+{ "t" change.case$
+emphasize}
+if$
+"title" bibinfo.check
+}
+
 FUNCTION {either.or.check}
 { empty$
     'pop$
@@ -668,7 +682,9 @@ FUNCTION {either.or.check}
 FUNCTION {format.bvolume}
 { volume empty$
    { "" }
-   { add.comma bbl.volume volume tie.or.space.prefix
+   { %add.comma
+     %bbl.volume
+     volume tie.or.space.prefix
      "volume" bibinfo.check * *
    }
  if$
@@ -859,7 +875,7 @@ FUNCTION {format.chapter.pages}
 FUNCTION {format.booktitle}
 {
   booktitle "booktitle" bibinfo.check
-  "t" change.case$
+  %SRM"t" change.case$
   emphasize
 }
 FUNCTION {format.in.ed.booktitle}
@@ -907,7 +923,7 @@ FUNCTION {format.book.crossref}
     { "empty volume in " cite$ * "'s crossref of " * crossref * warning$
       pop$ word.in
     }
-    { bbl.volume
+    { %bbl.volume
       capitalize
       swap$ tie.or.space.prefix "volume" bibinfo.check * * bbl.of space.word *
     }
@@ -991,8 +1007,9 @@ FUNCTION {book}
   date.block
   format.btitle "title" output.check
   crossref missing$
-    { format.bvolume output
+    { add.period
       format.number.series output
+      format.bvolume output
       new.block
       new.sentence
       format.publisher.address output
@@ -1160,7 +1177,6 @@ FUNCTION {mastersthesis}
  "title" output.check
  new.block
  address "address" bibinfo.check output
- add.colon
  school "school" bibinfo.warn output
  bbl.mthesis format.thesis.type output.nonnull
  format.doi output
@@ -1193,13 +1209,33 @@ FUNCTION {phdthesis}
   author format.key output
   format.date "year" output.check
   date.block
-  format.btitle
+  format.title
   "title" output.check
   new.block
   address "address" bibinfo.check output
   add.colon
   school "school" bibinfo.warn output
   bbl.phdthesis format.thesis.type output.nonnull
+  format.doi output
+  new.block
+  format.url output
+  new.block
+  format.note output
+  fin.entry
+}
+
+FUNCTION {mthesis}
+{ output.bibitem
+  format.authors "author" output.check
+  author format.key output
+  format.date "year" output.check
+  date.block
+  format.title "title" output.check
+  new.block
+  address "address" bibinfo.check output
+  add.colon
+  school "school" bibinfo.warn output
+  bbl.mthesis format.thesis.type output.nonnull
   format.doi output
   new.block
   format.url output
