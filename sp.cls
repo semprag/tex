@@ -464,9 +464,12 @@
 % definitions extend those of float.sty.
 %
 % sp caption style
+\newlength\floatc@sp@contentwidth
 \newcommand\floatc@sp[2]{%
-  \parbox[t]{0.15\textwidth}{{\@fs@cfont#1}}%
-  \parbox[t]{0.85\textwidth}{#2}}%
+  \setlength\floatc@sp@contentwidth{\linewidth}%
+  \addtolength\floatc@sp@contentwidth{-60pt}%
+  \parbox[t]{60pt}{{\@fs@cfont#1}}%
+  \parbox[t]{\floatc@sp@contentwidth}{#2}}%
 
 % sp float style; uses the sp caption style
 \newcommand\fs@sp{
