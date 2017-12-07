@@ -227,7 +227,7 @@
   \newcommand{\printbibliography}{\bibliography{\@bibresources}}
 \fi
 
-\RequirePackage[usenames,dvipsnames]{xcolor}
+\RequirePackage[usenames,dvipsnames,table]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
 \RequirePackage[colorlinks,breaklinks,
                 linkcolor=splinkcolor,
