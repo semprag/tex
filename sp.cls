@@ -428,14 +428,11 @@
 {\@@par
  \let\par\@empty
  \addvspace{3.25ex}%
- \noindent%\textbf{Author addresses}
- \small
- % Individual author addresses.
+ \small%
+ % Sub-environment for formatting each individual author's address.
  \newenvironment{address}%
-   {% For email addresses inside the address environment.
-    %\newcommand{\email}{\texttt}%
-    \begin{minipage}[t]{19pc}\raggedright}
-   {\end{minipage}\hspace{.15pc plus1pc}}%
+   {\noindent\ignorespaces\begin{minipage}[t]{.5\textwidth}}%
+   {\end{minipage}\allowbreak\ignorespacesafterend}%
  \ignorespaces
 }%
 {\lineskiplimit 1pc
