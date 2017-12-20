@@ -23,11 +23,13 @@ fi
 # sed commands:
 # 1) replace no-break spaces with normal spaces
 # 2) replace visual line break tags with spaces
-# 3) remove anchor tags
-# 4) shrink styling away from whitespace
+# 3) replace horizontal rules with spaces
+# 4) remove anchor tags
+# 5) shrink styling away from whitespace
 
 pdftohtml -i -stdout "$1" | sed \
   -e 's/&#160;/ /g' \
   -e 's:<br/>: :g' \
+  -e 's:<hr/>: :g' \
   -e 's:<a[^>]*>::g' -e 's:</a>::g' \
   -e 's: </i>:</i> :g'
