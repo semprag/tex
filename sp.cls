@@ -425,19 +425,12 @@
 
 % Environment for formatting all the addresses.
 \newenvironment{addresses}%
-{\@@par
- \let\par\@empty
- \addvspace{3.25ex}%
- \small%
- % Sub-environment for formatting each individual author's address.
- \newenvironment{address}[1][.5\textwidth]%
-   {\noindent\ignorespaces\begin{minipage}[t]{#1}\raggedright}%
-   {\end{minipage}\allowbreak\ignorespacesafterend}%
- \ignorespaces
-}%
-{\lineskiplimit 1pc
- \lineskip 1pc
- \@@par}
+ {\@@par\let\par\@empty\addvspace{3.25ex}\small\ignorespaces}%
+ {\lineskiplimit 1pc\lineskip 1pc\@@par}
+% Sub-environment for formatting each individual author's address.
+\newenvironment{address}[1][.5\textwidth]%
+ {\noindent\ignorespaces\begin{minipage}[t]{#1}\raggedright}%
+ {\end{minipage}\allowbreak\ignorespacesafterend}
 
 %=====================================================================
 %======================== other environments =========================
