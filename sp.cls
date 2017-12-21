@@ -430,8 +430,8 @@
  \addvspace{3.25ex}%
  \small%
  % Sub-environment for formatting each individual author's address.
- \newenvironment{address}%
-   {\noindent\ignorespaces\begin{minipage}[t]{.5\textwidth}\raggedright}%
+ \newenvironment{address}[1][.5\textwidth]%
+   {\noindent\ignorespaces\begin{minipage}[t]{#1}\raggedright}%
    {\end{minipage}\allowbreak\ignorespacesafterend}%
  \ignorespaces
 }%
