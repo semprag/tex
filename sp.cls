@@ -431,7 +431,7 @@
  \small%
  % Sub-environment for formatting each individual author's address.
  \newenvironment{address}%
-   {\noindent\ignorespaces\begin{minipage}[t]{.5\textwidth}}%
+   {\noindent\ignorespaces\begin{minipage}[t]{.5\textwidth}\raggedright}%
    {\end{minipage}\allowbreak\ignorespacesafterend}%
  \ignorespaces
 }%
