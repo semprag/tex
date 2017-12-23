@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+set -e # exit immediately on error
+
+# sed (stream editing) helper functions:
+print_all_but_contents() {
+  # _only_ print from beginning of the documentocument up until \end{abstract}
+  # then, _only_ print from \printbibliography on to the end of the document
+  sed -n -e '1,/end.*abstract/p' -e '/printbibliography/,$p'
+}
+remove_title() {
+  # delete the \maketitle line
+  sed -e '/maketitle/d'
+}
+remove_mshistory() {
+  # delete from \begin{mshistory} to \end{mshistory}
+  sed -e '/begin.*mshistory/,/end.*mshistory/d'
+}
+remove_addresses() {
+  # delete from \begin{addresses} to \end{addresses}
+  sed -e '/begin.*addresses/,/end.*addresses/d'
+}
+hide_bibliography() {
+  # replace the \printbibliography line with a version that sticks
+  # the bibliography in a box that it then forgets about
+  sed -e '/printbibliography/c\
+\\newsavebox\\bibbox\\savebox\\bibbox{\\parbox{\\textwidth}{\\printbibliography}}
+'
+}
+set_raggedright() {
+  # Add \raggedright to beginning of abstract to prevent hyphenation
+  sed -e '/begin.*abstract/s/begin{abstract}/begin{abstract}\\raggedright /'
+}
+disable_links() {
+  # Add "\hypersetup{draft}" at the end of the preamble so that citations are not hyperlinked
+  sed -e '/begin.*document/i\
+\\hypersetup{draft}
+'
+}
+disable_firstheadings() {
+  # Add "\thispagestyle{empty}" at the beginning of the document to hide [final] headings
+  sed -e '/begin.*document/a\
+\\thispagestyle{empty}
+'
+}
+force_lucida() {
+  # Add "lucida" class option, so that pdftohtml will recognize italics
+  sed -e 's/documentclass\[\(.*\)\]/documentclass[\1,lucida]/'
+}
+
+# CLI interface and argument parsing
+usage() {
+  >&2 cat <<HELP
+Usage: extract-abstract article.tex
+
+Rewrite the given LaTeX into a temporary directory,
+manipulating it so that only the abstract appears,
+then render it and convert the resulting PDF with pdftosimplehtml.
+HELP
+}
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *.tex)
+      INPUT="$1"
+      ;;
+    *)
+      usage
+      >&2 printf '\nUnrecognized option: %s\n' "$1"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+if [[ -z ${INPUT+missing} ]]; then
+  usage
+  exit 1
+fi
+>&2 printf 'Processing input file: "%s"\n' "$INPUT"
+
+TMPDIR=$(mktemp -d)
+cat "$INPUT" |\
+  print_all_but_contents |\
+  remove_title |\
+  remove_mshistory |\
+  remove_addresses |\
+  hide_bibliography |\
+  set_raggedright |\
+  disable_links |\
+  disable_firstheadings |\
+  force_lucida > "$TMPDIR/abstract.tex"
+>&2 printf 'Extracted abstract to file: "%s"\n' "$TMPDIR/abstract.tex"
+
+cd "$(dirname "$INPUT")"
+# latexmk writes a lot of insignificant stuff to stdout :(
+# but it's handier than the manual alternative, particulary because the source can use biblatex or bibtex
+latexmk -pvc- -output-directory="$TMPDIR" -aux-directory="$TMPDIR" "$TMPDIR/abstract.tex" >&2 || :
+>&2 printf 'Generated file: "%s"\n' "$TMPDIR/abstract.pdf"
+
+pdftosimplehtml "$TMPDIR/abstract.pdf" | sed -e '1,/<body/d' -e '/<\/body/,$d'
