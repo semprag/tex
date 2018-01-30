@@ -168,13 +168,6 @@
 \newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
 \RequirePackage[leqno,tbtags]{amsmath}
-% If the author is using postscript (discouraged), then load the
-% breakurl package, else don't load it.
-\RequirePackage{ifpdf}
-\ifpdf
-\else
-  \RequirePackage{breakurl}
-\fi
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage[hang,FIGBOTCAP,loose]{subfigure}
