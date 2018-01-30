@@ -100,11 +100,15 @@
 %=====================================================================
 %========================= required packages =========================
 
-\RequirePackage[utf8]{inputenc}
-% define U+2011 NON-BREAKING HYPHEN as a regular hyphen + line break prohibition
-% Based on http://tex.stackexchange.com/a/23146
-% plain \mbox{-} doesn't allow the suffix to hyphenate automatically
-\DeclareUnicodeCharacter{2011}{\mbox{-}\nobreak\hskip\z@}
+\RequirePackage{ifxetex}
+\ifxetex
+\else
+  \RequirePackage[utf8]{inputenc}
+  % define U+2011 NON-BREAKING HYPHEN as a regular hyphen + line break prohibition
+  % Based on http://tex.stackexchange.com/a/23146
+  % plain \mbox{-} doesn't allow the suffix to hyphenate automatically
+  \DeclareUnicodeCharacter{2011}{\mbox{-}\nobreak\hskip\z@}
+\fi
 \RequirePackage{xspace}
 % microtype handles punctuation at the right margin. We want it for
 % the final product, but it's okay if authors lack it.
