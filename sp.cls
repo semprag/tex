@@ -104,7 +104,7 @@
 % define U+2011 NON-BREAKING HYPHEN as a regular hyphen + line break prohibition
 % Based on http://tex.stackexchange.com/a/23146
 % plain \mbox{-} doesn't allow the suffix to hyphenate automatically
-\DeclareUnicodeCharacter{2011}{\mbox{-}\nobreak\hskip0pt}
+\DeclareUnicodeCharacter{2011}{\mbox{-}\nobreak\hskip\z@}
 \RequirePackage{xspace}
 % microtype handles punctuation at the right margin. We want it for
 % the final product, but it's okay if authors lack it.
@@ -385,17 +385,17 @@
 %=====================================================================
 %============================ sectioning =============================
 
-\renewcommand{\section}{\@startsection{section}{1}{0pt}%
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-3.5ex plus -1ex minus -.2ex}%
   {1.8ex plus.2ex}%
   {\noindent\normalfont\bfseries}}
 
-\renewcommand{\subsection}{\@startsection{subsection}{2}{0pt}%
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
   {-3.5ex plus -1ex minus -.2ex}%
   {1.8ex plus.2ex}%
   {\noindent\normalfont\bfseries}}
 
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0pt}%
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
   {-3.5ex plus -1ex minus -.2ex}%
   {1.8ex plus.2ex}%
   {\noindent\normalfont\bfseries}}
