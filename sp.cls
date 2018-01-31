@@ -60,13 +60,6 @@
 \LoadClass[12pt,twoside]{article}
 
 \if@lucida
-  \IfFileExists{lucimatx.sty}{}{
-    \ClassWarning{sp.cls}{Lucida requested but cannot find font; falling back to Times}
-    \@lucidafalse \@timestrue
-  }
-\fi
-
-\if@lucida
   \RequirePackage[romanfamily=bright-osf,scale=0.9,stdmathdigits=true]{lucimatx}
   \linespread{1.05}
   \let\llbracket\ldbrack
