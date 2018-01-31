@@ -30,13 +30,15 @@
 %=====================================================================
 %======================== option declarations ========================
 
-\newif\if@lucida\@lucidafalse
-\newif\if@cm\@cmtrue
-\newif\if@times\@timestrue
-\newif\if@final\@finalfalse
-\newif\if@biblatex\@biblatexfalse
-\newif\if@linguex\@linguexfalse
-\newif\if@expex\@expexfalse
+% mutually exclusive fonts
+\newif\if@lucida
+\newif\if@times
+% example-numbering packages
+\newif\if@expex
+\newif\if@linguex
+% production settings
+\newif\if@biblatex
+\newif\if@final
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -47,13 +49,16 @@
 \DeclareOption{10pt}{\@sizeoption@err}
 \DeclareOption{11pt}{\@sizeoption@err}
 
-\DeclareOption{lucida}{\@lucidatrue \@timesfalse \@cmfalse }
-\DeclareOption{times}{\@lucidafalse \@timestrue \@cmfalse }
-\DeclareOption{cm}{\@lucidafalse \@timesfalse \@cmtrue}
-\DeclareOption{final}{\@finaltrue}
-\DeclareOption{biblatex}{\@biblatextrue}
-\DeclareOption{linguex}{\@linguextrue}
+% fonts
+\DeclareOption{cm}{\@lucidafalse \@timesfalse}
+\DeclareOption{lucida}{\@lucidatrue \@timesfalse}
+\DeclareOption{times}{\@lucidafalse \@timestrue}
+% example-numbering packages
 \DeclareOption{expex}{\@expextrue}
+\DeclareOption{linguex}{\@linguextrue}
+% production settings
+\DeclareOption{biblatex}{\@biblatextrue}
+\DeclareOption{final}{\@finaltrue}
 
 \ExecuteOptions{times} % times is the default.
 \ProcessOptions\relax
