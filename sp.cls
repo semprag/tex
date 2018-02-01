@@ -149,10 +149,16 @@
   \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
   % \addbibresource{} and \printbibliography are the names of standard
   % BibLaTeX macros, which are shimmed here to call out to normal BibTeX.
+  % The \@bibresources variable stores a list of bibliography arguments,
+  % which are subsequently loaded by the 0-arity \printbibliography call.
   \def\@bibresources{}
+  % \addbibresource mutably appends the given argument to \@bibresources,
+  % maintaining \@bibresources as a comma-separated list of arguments.
   \newcommand{\addbibresource}[1]{%
-    % \xdef is like \gdef but immediately expands the second argument
+    % \xdef is like \gdef, but immediately expands the second argument.
     \xdef\@bibresources{\@bibresources\ifx\@empty\@bibresources\else,\fi#1}}
+  % \printbibliography simply calls the standard BibTeX \bibliography command
+  % with the value of the \@bibresources variable (set earlier, as with BibLaTeX).
   \newcommand{\printbibliography}{\bibliography{\@bibresources}}
 \fi
 
