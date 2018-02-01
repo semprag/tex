@@ -30,9 +30,8 @@
 %=====================================================================
 %======================== option declarations ========================
 
-% mutually exclusive fonts
-\newif\if@lucida
-\newif\if@times
+% font selection
+\newcount\@fontenum
 % example-numbering packages
 \newif\if@expex
 \newif\if@linguex
@@ -49,10 +48,10 @@
 \DeclareOption{10pt}{\@sizeoption@err}
 \DeclareOption{11pt}{\@sizeoption@err}
 
-% fonts
-\DeclareOption{cm}{\@lucidafalse \@timesfalse}
-\DeclareOption{lucida}{\@lucidatrue \@timesfalse}
-\DeclareOption{times}{\@lucidafalse \@timestrue}
+% mutually exclusive font selection
+\DeclareOption{cm}{\@fontenum=0}
+\DeclareOption{times}{\@fontenum=1}
+\DeclareOption{lucida}{\@fontenum=2}
 % example-numbering packages
 \DeclareOption{expex}{\@expextrue}
 \DeclareOption{linguex}{\@linguextrue}
@@ -64,14 +63,22 @@
 \ProcessOptions\relax
 \LoadClass[12pt,twoside]{article}
 
-\if@lucida
+% Load fonts as indicated by \@fontenum setting.
+\ifcase \@fontenum % 0 = cm
+  % Computer Modern is the standard font; do nothing
+\or % 1 = times
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{mathptmx}
+\or % 2 = lucida
   \RequirePackage[romanfamily=bright-osf,scale=0.9,stdmathdigits=true]{lucimatx}
   \linespread{1.05}
   \let\llbracket\ldbrack
   \let\rrbracket\rdbrack
   \DeclareTextCommand{\textbullet}{\encodingdefault}{\UseTextSymbol{OMS}\textbullet} % the default is tiny
   \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
-\else
+\fi
+% load shims for non-Lucida fonts (0 = cm and 1 = times)
+\ifnum \@fontenum < 2
   \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
     \ClassWarning{sp.cls}{stmaryrd required but not available; double brackets may be rendered incorrectly}
     \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
@@ -79,11 +86,6 @@
   }
   \RequirePackage{textcomp}
   \RequirePackage{amssymb}
-\fi
-%
-\if@times
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage{mathptmx}
 \fi
 
 % Strong widow and orphan control
