@@ -52,6 +52,7 @@
 \DeclareOption{cm}{\@fontenum=0}
 \DeclareOption{times}{\@fontenum=1}
 \DeclareOption{lucida}{\@fontenum=2}
+\DeclareOption{lucidaot}{\@fontenum=3}
 % example-numbering packages
 \DeclareOption{expex}{\@expextrue}
 \DeclareOption{linguex}{\@linguextrue}
@@ -63,6 +64,21 @@
 \ProcessOptions\relax
 \LoadClass[12pt,twoside]{article}
 
+% amsmath must be loaded before unicode-math; might as well load it here
+\RequirePackage[leqno,tbtags]{amsmath}
+
+\RequirePackage{ifxetex}
+% if 1) lucida is requested, and 2) lucimatx can't be found, and 3) we're using XeTeX,
+% fall back to lucidaot with a warning
+\ifnum \@fontenum = 2
+  \IfFileExists{lucimatx.sty}{}{
+    \ifxetex
+      \ClassWarning{sp.cls}{Lucida requested but cannot find font; trying LucidaOT}
+      \@fontenum=3
+    \fi
+  }
+\fi
+
 % Load fonts as indicated by \@fontenum setting.
 \ifcase \@fontenum % 0 = cm
   % Computer Modern is the standard font; do nothing
@@ -71,14 +87,34 @@
   \RequirePackage{mathptmx}
 \or % 2 = lucida
   \RequirePackage[romanfamily=bright-osf,scale=0.9,stdmathdigits=true]{lucimatx}
-  \linespread{1.05}
   \let\llbracket\ldbrack
   \let\rrbracket\rdbrack
   \DeclareTextCommand{\textbullet}{\encodingdefault}{\UseTextSymbol{OMS}\textbullet} % the default is tiny
   \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
+\or % 3 = lucidaot
+  \RequirePackage{fontspec}
+  \RequirePackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=0.9,Extension=.otf}
+  \setmainfont{LucidaBrightOT}[
+    Numbers=OldStyle,
+    BoldFont=*-Demi,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-DemiItalic]
+  \setsansfont{LucidaSansOT}[
+    BoldFont=*-Demi,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-DemiItalic]
+  \setmonofont{LucidaSansTypewriterOT}[
+    BoldFont=*-Bold,
+    ItalicFont=*-Oblique,
+    BoldItalicFont=*-BoldOblique]
+  \setmathfont{LucidaBrightMathOT}
+  \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
+  \let\llbracket^^^^27e6 % MATHEMATICAL LEFT WHITE SQUARE BRACKET (U+27E6)
+  \let\rrbracket^^^^27e7 % MATHEMATICAL RIGHT WHITE SQUARE BRACKET (U+27E7)
 \fi
-% load shims for non-Lucida fonts (0 = cm and 1 = times)
 \ifnum \@fontenum < 2
+  % load shims for non-Lucida fonts (0 = cm and 1 = times)
   \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
     \ClassWarning{sp.cls}{stmaryrd required but not available; double brackets may be rendered incorrectly}
     \newcommand{\llbracket}{\ensuremath{\left [\!\left [}}
@@ -86,6 +122,9 @@
   }
   \RequirePackage{textcomp}
   \RequirePackage{amssymb}
+\else
+  % load extras for Lucida fonts (2 = lucida and 3 = lucidaot)
+  \linespread{1.05}
 \fi
 
 % Strong widow and orphan control
@@ -100,7 +139,6 @@
 %=====================================================================
 %========================= required packages =========================
 
-\RequirePackage{ifxetex}
 \ifxetex
 \else
   \RequirePackage[utf8]{inputenc}
@@ -177,7 +215,6 @@
                 pdfstartview=FitH]{hyperref}
 \newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
-\RequirePackage[leqno,tbtags]{amsmath}
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage[hang,FIGBOTCAP,loose]{subfigure}
