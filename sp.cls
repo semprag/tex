@@ -95,6 +95,11 @@
   \RequirePackage{fontspec}
   \RequirePackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=0.9,Extension=.otf}
+  \IfFileExists{./fonts/LucidaBrightOT.otf}{
+    % look for Lucida font files in 'fonts' directory if it exists
+    \defaultfontfeatures+{Path=./fonts/}
+    \ClassWarning{sp.cls}{Loading LucidaOT files from local ./fonts/ directory; using globally-installed fonts is preferred}
+  }{}
   \setmainfont{LucidaBrightOT}[
     Numbers=OldStyle,
     BoldFont=*-Demi,
