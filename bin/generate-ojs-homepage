@@ -46,8 +46,10 @@ separator() {
   echo '<div class="separator"></div>'
 }
 
-volume_contents 10
+volume_contents 11
 [[ -e "$1" ]] && cat "$1"
+separator
+volume_contents 10
 separator
 volume_contents 9
 separator
@@ -60,7 +62,5 @@ separator
 volume_contents 5
 separator
 volume_contents 4
-separator
-volume_contents 3
 separator
 echo 'For earlier volumes, see <a href="http://semprag.org/issue/archive">the Archives tab</a>.'
