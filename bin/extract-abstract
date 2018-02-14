@@ -44,8 +44,11 @@ disable_firstheadings() {
 '
 }
 force_lucida() {
-  # Add "lucida" class option, so that pdftohtml will recognize italics
-  sed -e 's/documentclass\[\(.*\)\]/documentclass[\1,lucida]/'
+  # Add "lucida" class option, so that pdftohtml will recognize italics;
+  # first handling the case of adding to existing options,
+  # and then the case of no existing options
+  sed -e 's/documentclass\[\(.*\)\]/documentclass[\1,lucida]/' \
+      -e 's/documentclass{sp}/documentclass[lucida]{sp}/'
 }
 
 # CLI interface and argument parsing
