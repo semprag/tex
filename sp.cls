@@ -538,7 +538,7 @@
 
 \newcommand{\email}[1]{\href{mailto:#1}{#1}}
 
-\providecommand{\sv}[1]{\ensuremath{\llbracket #1 \rrbracket}}
+\providecommand{\sv}[1]{\ensuremath{\llbracket{#1}\rrbracket}}
 
 %=====================================================================
 %=========================== linguex settings ========================
