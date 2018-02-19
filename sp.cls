@@ -117,6 +117,10 @@
   \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
   \def\llbracket{\char"27E6} % MATHEMATICAL LEFT WHITE SQUARE BRACKET (U+27E6)
   \def\rrbracket{\char"27E7} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET (U+27E7)
+  \def\leadsto{\char"21DD} % RIGHTWARDS SQUIGGLE ARROW (U+21DD)
+  \def\Join{\char"22C8} % BOWTIE (U+22C8)
+  \def\Box{\char"25A1} % WHITE SQUARE (U+25A1)
+  \def\Diamond{\char"25C7} % WHITE DIAMOND (U+25C7)
 \fi
 \ifnum \@fontenum < 2
   % load shims for non-Lucida fonts (0 = cm and 1 = times)
