@@ -115,8 +115,8 @@
     BoldItalicFont=*-BoldOblique]
   \setmathfont{LucidaBrightMathOT}
   \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
-  \let\llbracket\char"27e6 % MATHEMATICAL LEFT WHITE SQUARE BRACKET (U+27E6)
-  \let\rrbracket\char"27e7 % MATHEMATICAL RIGHT WHITE SQUARE BRACKET (U+27E7)
+  \def\llbracket{\char"27E6} % MATHEMATICAL LEFT WHITE SQUARE BRACKET (U+27E6)
+  \def\rrbracket{\char"27E7} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET (U+27E7)
 \fi
 \ifnum \@fontenum < 2
   % load shims for non-Lucida fonts (0 = cm and 1 = times)
