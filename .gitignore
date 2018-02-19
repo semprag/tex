@@ -19,8 +19,7 @@
 *.log
 *.lot
 *.maf
-*.mtc
-*.mtc0
+*.mtc*
 *.nav
 *.nlo
 *.out
@@ -28,9 +27,12 @@
 *.ps
 *.run.xml
 *.snm
+*.swp
 *.synctex.gz
+*.thm
 *.toc
 *.vrb
+*.xdv
 *.xdy
 *.tdo
 *sublime*
