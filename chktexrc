@@ -1,0 +1,84 @@
+# Assuming this file is installed to ~/semprag/tex/chktexrc, call like:
+#   chktex -v2 -g -l ~/semprag/tex/chktexrc wip_article.tex
+
+# For all options and defaults, refer to the global configuration file at:
+#   $(kpsewhich -var-value=TEXMFDIST)/chktex/chktexrc
+
+# S&P style prefers "Logical" punctuation (not a hard requirement, and there are some exceptions)
+QuoteStyle = Logical
+
+# Define a level of indentation as 2 spaces
+TabSize = 2
+
+# HyphDash dictates in-word hyphenation (alphabetic characters on both sides)
+# S&P style allows only "-" (not "--" or "---")
+HyphDash
+{
+    1
+}
+
+# NumDash dictates inter-numeric hyphenation (digits on both sides), e.g., page ranges
+# S&P style requires "--" (not "-" or "---")
+NumDash
+{
+    2
+}
+
+# WordDash dictates inter-word/sentential hyphenation (whitespace on both sides)
+# S&P style disallows hyphens in this context entirely; \dash should be used instead
+WordDash
+{
+    0
+}
+
+# NotPreSpaced disallows whitespace before these commands:
+NotPreSpaced
+{
+    \footnote
+    \footnotemark
+    \thanks
+}
+
+# Silent ignores the "Command terminated with space" warnings for these commands:
+Silent
+{
+    \dots
+    \footnotemark
+    \item
+    \ldots
+    \maketableofcontents
+    \maketitle
+    \printbibliography
+# math commands
+    \approx
+    \geq
+    \neg
+    \quad
+    \supset
+    \wedge
+# vertical spacing commands
+    \smallskip \medskip \bigskip
+    \smallbreak \medbreak \bigbreak
+    \vfill
+# horizontal spacing commands
+    \centering
+    \hfil \hfill
+    \noindent
+# size commands
+    \tiny \scriptsize \footnotesize \small \normalsize \large \Large \LARGE \huge \Huge
+# documentclass: sp
+    \AND
+    \dash
+# package: TikZ
+    \draw
+    \node
+# package: gb4e
+    \ex
+# package: cgloss4e
+    \gll \glt
+# package: ExPex
+    \ex \pex \xe
+    \begingl \gla \glb \glft \endgl
+# package: booktabs
+    \toprule \midrule \bottomrule
+}
