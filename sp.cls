@@ -98,7 +98,7 @@
   \IfFileExists{./fonts/LucidaBrightOT.otf}{
     % look for Lucida font files in 'fonts' directory if it exists
     \defaultfontfeatures+{Path=./fonts/}
-    \ClassWarning{sp.cls}{Loading LucidaOT files from local ./fonts/ directory; using globally-installed fonts is preferred}
+    \ClassInfo{sp.cls}{Loading LucidaOT files from local ./fonts/ directory; using globally-installed fonts is preferred}
   }{}
   \setmainfont{LucidaBrightOT}[
     Numbers=OldStyle,
