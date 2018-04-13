@@ -121,6 +121,8 @@
   \def\Join{\symbol{"22C8}} % BOWTIE
   \def\Box{\symbol{"25A1}} % WHITE SQUARE
   \def\Diamond{\symbol{"25C7}} % WHITE DIAMOND
+  \def\ulcorner{\symbol{"23A1}} % LEFT SQUARE BRACKET UPPER CORNER
+  \def\urcorner{\symbol{"23A4}} % RIGHT SQUARE BRACKET UPPER CORNER
 \fi
 \ifnum \@fontenum < 2
   % load shims for non-Lucida fonts (0 = cm and 1 = times)
