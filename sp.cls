@@ -115,12 +115,12 @@
     BoldItalicFont=*-BoldOblique]
   \setmathfont{LucidaBrightMathOT}
   \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
-  \def\llbracket{\char"27E6} % MATHEMATICAL LEFT WHITE SQUARE BRACKET
-  \def\rrbracket{\char"27E7} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET
-  \def\leadsto{\char"21DD} % RIGHTWARDS SQUIGGLE ARROW
-  \def\Join{\char"22C8} % BOWTIE
-  \def\Box{\char"25A1} % WHITE SQUARE
-  \def\Diamond{\char"25C7} % WHITE DIAMOND
+  \def\llbracket{\symbol{"27E6}} % MATHEMATICAL LEFT WHITE SQUARE BRACKET
+  \def\rrbracket{\symbol{"27E7}} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET
+  \def\leadsto{\symbol{"21DD}} % RIGHTWARDS SQUIGGLE ARROW
+  \def\Join{\symbol{"22C8}} % BOWTIE
+  \def\Box{\symbol{"25A1}} % WHITE SQUARE
+  \def\Diamond{\symbol{"25C7}} % WHITE DIAMOND
 \fi
 \ifnum \@fontenum < 2
   % load shims for non-Lucida fonts (0 = cm and 1 = times)
