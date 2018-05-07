@@ -2,9 +2,44 @@
 
 set -e # exit immediately on error
 
+usage() {
+  >&2 cat <<HELP
+Usage: $(basename "$0") article.tex
+
+Rewrite the given LaTeX into a temporary directory,
+manipulating it so that only the abstract appears,
+then render it and convert the resulting PDF with pdftosimplehtml.
+HELP
+}
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *.tex)
+      INPUT=$1
+      ;;
+    *)
+      usage
+      >&2 printf '\nUnrecognized option: %s\n' "$1"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+if [[ -z ${INPUT+missing} ]]; then
+  usage
+  >&2 printf '\nYou must supply a TeX input file.\n'
+  exit 1
+fi
+
 # sed (stream editing) helper functions:
+
 print_all_but_contents() {
-  # _only_ print from beginning of the documentocument up until \end{abstract}
+  # _only_ print from beginning of the document up until \end{abstract}
   # then, _only_ print from \printbibliography on to the end of the document
   sed -n -e '1,/end.*abstract/p' -e '/printbibliography/,$p'
 }
@@ -32,7 +67,7 @@ set_raggedright() {
   sed -e '/begin.*abstract/s/begin{abstract}/begin{abstract}\\raggedright /'
 }
 disable_links() {
-  # Add "\hypersetup{draft}" at the end of the preamble so that citations are not hyperlinked
+  # Add "\hypersetup{draft}" at the end of the preamble so that citations are not linked
   sed -e '/begin.*document/i\
 \\hypersetup{draft}
 '
@@ -51,57 +86,27 @@ force_lucida() {
       -e 's/documentclass{sp}/documentclass[lucida]{sp}/'
 }
 
-# CLI interface and argument parsing
-usage() {
-  >&2 cat <<HELP
-Usage: extract-abstract article.tex
+# conversion pipeline:
 
-Rewrite the given LaTeX into a temporary directory,
-manipulating it so that only the abstract appears,
-then render it and convert the resulting PDF with pdftosimplehtml.
-HELP
-}
-
-while [[ $# -gt 0 ]]; do
-  case $1 in
-    -h|--help)
-      usage
-      exit 0
-      ;;
-    *.tex)
-      INPUT="$1"
-      ;;
-    *)
-      usage
-      >&2 printf '\nUnrecognized option: %s\n' "$1"
-      exit 1
-      ;;
-  esac
-  shift
-done
-
-if [[ -z ${INPUT+missing} ]]; then
-  usage
-  exit 1
-fi
 >&2 printf 'Processing input file: "%s"\n' "$INPUT"
 
 TMPDIR=$(mktemp -d)
-cat "$INPUT" |\
-  print_all_but_contents |\
-  remove_title |\
-  remove_mshistory |\
-  remove_addresses |\
-  hide_bibliography |\
-  set_raggedright |\
-  disable_links |\
-  disable_firstheadings |\
-  force_lucida > "$TMPDIR/abstract.tex"
+cat "$INPUT" \
+| print_all_but_contents \
+| remove_title \
+| remove_mshistory \
+| remove_addresses \
+| hide_bibliography \
+| set_raggedright \
+| disable_links \
+| disable_firstheadings \
+| force_lucida > "$TMPDIR/abstract.tex"
 >&2 printf 'Extracted abstract to file: "%s"\n' "$TMPDIR/abstract.tex"
 
 cd "$(dirname "$INPUT")"
 # latexmk writes a lot of insignificant stuff to stdout :(
-# but it's handier than the manual alternative, particulary because the source can use biblatex or bibtex
+# but it's handier than the manual alternative,
+# particularly because the source can use biblatex or bibtex
 latexmk -pvc- -output-directory="$TMPDIR" -aux-directory="$TMPDIR" "$TMPDIR/abstract.tex" >&2 || :
 >&2 printf 'Generated file: "%s"\n' "$TMPDIR/abstract.pdf"
 
