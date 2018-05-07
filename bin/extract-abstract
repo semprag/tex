@@ -110,4 +110,6 @@ cd "$(dirname "$INPUT")"
 latexmk -pvc- -output-directory="$TMPDIR" -aux-directory="$TMPDIR" "$TMPDIR/abstract.tex" >&2 || :
 >&2 printf 'Generated file: "%s"\n' "$TMPDIR/abstract.pdf"
 
-pdftosimplehtml "$TMPDIR/abstract.pdf" | sed -e '1,/<body/d' -e '/<\/body/,$d'
+pdftosimplehtml "$TMPDIR/abstract.pdf" \
+| xmlstarlet ed -r '//_:i' -v italic \
+| sed -e '1,/<body/d' -e '/<\/body/,$d'
