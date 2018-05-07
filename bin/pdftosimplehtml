@@ -1,12 +1,37 @@
 #!/usr/bin/env bash
 
-if [[ "${@---help}" =~ '--help' ]]; then
+set -e # exit immediately on error
+
+usage() {
   >&2 cat <<HELP
-Usage: pdftosimplehtml article.pdf > article.html
+Usage: $(basename "$0") article.pdf > article.html
 
 This calls Poppler's pdftohtml with the -stdout option and pipes that
 through several sed expressions to clean up the resulting HTML.
 HELP
+}
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *.pdf)
+      INPUT=$1
+      ;;
+    *)
+      usage
+      >&2 printf '\nUnrecognized option: %s\n' "$1"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+if [[ -z ${INPUT+missing} ]]; then
+  usage
+  >&2 printf '\nYou must supply a PDF input file.\n'
   exit 1
 fi
 
@@ -27,7 +52,7 @@ fi
 # 4) remove anchor tags
 # 5) shrink styling away from whitespace
 
-pdftohtml -i -stdout "$1" | sed \
+pdftohtml -i -stdout "$INPUT" | sed \
   -e 's/&#160;/ /g' \
   -e 's:<br/>: :g' \
   -e 's:<hr/>: :g' \
