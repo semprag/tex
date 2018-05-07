@@ -1,28 +1,49 @@
 #!/usr/bin/env bash
 
-CACHEDIR="${TMPDIR-/tmp/}homepage"
+set -e # exit immediately on error
 
-if [[ "$@" =~ '--help' ]]; then
+CACHEDIR=${TMPDIR-/tmp/}homepage
+
+usage() {
   >&2 cat <<HELP
-Usage: generate-ojs-homepage [forthcoming.html] | pbcopy
+Usage: $(basename "$0") [forthcoming.html] | pbcopy
 
 Fetch automatically generated OJS pages for S&P Volumes 10 through 3,
 combine with the forthcoming list, and add a link to the archives.
 
 If the OJS pages have changed recently, you may need to clean the cache:
 
-    rm -rfv $CACHEDIR
+    rm -rf $CACHEDIR
 HELP
-  exit 1
-fi
+}
 
-# Depends on pup from https://github.com/ericchiang/pup, which is for
-# "Parsing HTML at the command line", and is available through Homebrew
+FORTHCOMING=()
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *.html)
+      FORTHCOMING+=("$1")
+      ;;
+    *)
+      usage
+      >&2 printf '\nUnrecognized option: %s\n' "$1"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
 if ! command -v pup >/dev/null 2>&1; then
   >&2 cat <<MISSING
-Could not find 'pup' command. You need to install Pup:
+Could not find 'pup' command, which is used for "Parsing HTML at the command line".
+Pup is available through Homebrew; to install:
 
     brew install pup
+
+See https://github.com/ericchiang/pup for alternatives.
 
 Recklessly continuing anyway.
 MISSING
@@ -32,22 +53,24 @@ mkdir -p "$CACHEDIR"
 
 volume_contents() {
   # download the file if needed
-  wget -nc http://semprag.org/issue/view/sp.$1 -P "$CACHEDIR"
-  # using https://github.com/ericchiang/pup for html extraction
+  wget -nc "http://semprag.org/issue/view/sp.$1" -P "$CACHEDIR"
   # pull out the volume number + year
-  echo '<h3>'
+  printf '<h3>\n'
   pup '#main h2 text{}' -f "$CACHEDIR/sp.$1"
-  echo '</h3>'
+  printf '</h3>\n'
   # pull out the table of contents sections
   pup '[class^="toc"]' -f "$CACHEDIR/sp.$1"
 }
 
 separator() {
-  echo '<div class="separator"></div>'
+  printf '<div class="separator"></div>\n'
 }
 
 volume_contents 11
-[[ -e "$1" ]] && cat "$1"
+if [[ ${#FORTHCOMING[@]} -gt 0 ]]; then
+  >&2 printf 'Writing forthcoming HTML file(s): %s\n' "${FORTHCOMING[*]}"
+  cat "${FORTHCOMING[@]}"
+fi
 separator
 volume_contents 10
 separator
@@ -63,4 +86,4 @@ volume_contents 5
 separator
 volume_contents 4
 separator
-echo 'For earlier volumes, see <a href="http://semprag.org/issue/archive">the Archives tab</a>.'
+printf 'For earlier volumes, see <a href="http://semprag.org/issue/archive">the Archives tab</a>.\n'
