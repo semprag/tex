@@ -72,7 +72,7 @@ if [[ ${#FORTHCOMING[@]} -gt 0 ]]; then
   cat "${FORTHCOMING[@]}"
 fi
 separator
-for volume in 10 9 8 7 6 5 4; do
+for volume in 10 9 8 7 6 5; do
   volume_contents $volume
   separator
 done
