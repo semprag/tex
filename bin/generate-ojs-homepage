@@ -8,7 +8,7 @@ usage() {
   >&2 cat <<HELP
 Usage: $(basename "$0") [forthcoming.html] | pbcopy
 
-Fetch automatically generated OJS pages for S&P Volumes 10 through 3,
+Fetch automatically generated OJS pages for S&P Volumes 11 through 5,
 combine with the forthcoming list, and add a link to the archives.
 
 If the OJS pages have changed recently, you may need to clean the cache:
