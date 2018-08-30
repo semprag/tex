@@ -43,10 +43,9 @@ Pup is available through Homebrew; to install:
 
     brew install pup
 
-See https://github.com/ericchiang/pup for alternatives.
-
-Recklessly continuing anyway.
+See https://github.com/ericchiang/pup for alternative installation methods.
 MISSING
+  exit 1
 fi
 
 mkdir -p "$CACHEDIR"
