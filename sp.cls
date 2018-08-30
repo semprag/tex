@@ -94,27 +94,41 @@
 \or % 3 = lucidaot
   \RequirePackage{fontspec}
   \RequirePackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=0.9,Extension=.otf}
+  \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
+  % load Lucida font files from local directory if possible
   \IfFileExists{./fonts/LucidaBrightOT.otf}{
-    % look for Lucida font files in 'fonts' directory if it exists
-    \defaultfontfeatures+{Path=./fonts/}
-    \ClassInfo{sp.cls}{Loading LucidaOT files from local ./fonts/ directory; using globally-installed fonts is preferred}
-  }{}
-  \setmainfont{LucidaBrightOT}[
-    Numbers=OldStyle,
-    BoldFont=*-Demi,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-DemiItalic]
-  \setsansfont{LucidaSansOT}[
-    BoldFont=*-Demi,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-DemiItalic]
-  \setmonofont{LucidaSansTypewriterOT}[
-    BoldFont=*-Bold,
-    ItalicFont=*-Oblique,
-    BoldItalicFont=*-BoldOblique]
-  \setmathfont{LucidaBrightMathOT}
-  \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
+    \ClassInfo{sp.cls}{Loading LucidaOT files from local directory (./fonts/)}
+    \defaultfontfeatures+{Path=./fonts/,Extension=.otf}
+    % pre-configure the fonts for loading via their canonical / system name
+    % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
+    \defaultfontfeatures[Lucida Bright OT]{
+      UprightFont=LucidaBrightOT,
+      BoldFont=LucidaBrightOT-Demi,
+      ItalicFont=LucidaBrightOT-Italic,
+      BoldItalicFont=LucidaBrightOT-DemiItalic}
+    \defaultfontfeatures[Lucida Sans OT]{
+      UprightFont=LucidaSansOT,
+      BoldFont=LucidaSansOT-Demi,
+      ItalicFont=LucidaSansOT-Italic,
+      BoldItalicFont=LucidaSansOT-DemiItalic}
+    \defaultfontfeatures[Lucida Sans Typewriter OT]{
+      UprightFont=LucidaSansTypewriterOT-Bold,
+      BoldFont=LucidaSansTypewriterOT-Bold,
+      ItalicFont=LucidaSansTypewriterOT-Oblique,
+      BoldItalicFont=LucidaSansTypewriterOT-BoldOblique}
+    % there is no such pre-configuration implemented in unicode-math,
+    % so \setmathfont must be called distinctly in each branch
+    \setmathfont{LucidaBrightMathOT}
+    \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
+  }{
+    \ClassInfo{sp.cls}{Loading LucidaOT fonts from system}
+    \setmathfont{Lucida Bright Math OT}
+  }
+  % load fonts using their canonical / system names
+  \setmainfont{Lucida Bright OT}[Numbers=OldStyle]
+  \setsansfont{Lucida Sans OT}
+  \setmonofont{Lucida Sans Typewriter OT}
+  % shim several math commands to approximate definitions in lucimatx.sty
   \def\llbracket{\symbol{"27E6}} % MATHEMATICAL LEFT WHITE SQUARE BRACKET
   \def\rrbracket{\symbol{"27E7}} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET
   \def\leadsto{\symbol{"21DD}} % RIGHTWARDS SQUIGGLE ARROW
