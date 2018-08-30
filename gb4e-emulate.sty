@@ -37,39 +37,26 @@
   ref=\arabic*,
   leftmargin=*}
 \newlist{xlist}{enumerate}{3}
-\setlist[xlist,1]{
+\setlist[xlist]{
   topsep=1.5\p@ plus \p@,
   itemsep=1.5\p@ plus \p@,
   labelsep=*,
   parsep=\p@ plus .5\p@ minus .5\p@,
+  itemindent=0em,
+  align=left,
+  leftmargin=*}
+\setlist[xlist,1]{
   label={\alph*.},
   ref={\arabic{exei}\alph*},
-  widest=a.,
-  align=left,
-  itemindent=0em,
-  leftmargin=*}
+  widest=a.}
 \setlist[xlist,2]{
-  topsep=1.5\p@ plus \p@,
-  itemsep=1.5\p@ plus \p@,
-  labelsep=*,
-  parsep=\p@ plus .5\p@ minus .5\p@,
   label={\roman*.},
   ref={\thexlisti.\roman*},
-  widest=iv.,
-  align=left,
-  itemindent=0em,
-  leftmargin=*}
+  widest=iv.}
 \setlist[xlist,3]{
-  topsep=1.5\p@ plus \p@,
-  itemsep=1.5\p@ plus \p@,
-  labelsep=*,
-  parsep=\p@ plus .5\p@ minus .5\p@,
   label={\arabic*.},
   ref={\thexlistii.\arabic*},
-  widest=9.,
-  align=left,
-  itemindent=0em,
-  leftmargin=*}
+  widest=9.}
 % emulate specific lists
 \newenvironment{xlisti}{%
   \begin{xlist}[topsep=1.5\p@ plus \p@,
