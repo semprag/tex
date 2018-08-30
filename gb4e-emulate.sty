@@ -59,65 +59,25 @@
   widest=9.}
 % emulate specific lists
 \newenvironment{xlisti}{%
-  \begin{xlist}[topsep=1.5\p@ plus \p@,
-                itemsep=1.5\p@ plus \p@,
-                parsep=\p@ plus .5\p@ minus .5\p@,
-                labelsep=*,
-                label={\roman*.},
+  \begin{xlist}[label={\roman*.},
                 ref={\arabic{exei}\roman*},
-                widest=iv.,
-                labelsep=*,
-                align=left,
-                itemindent=0em,
-                leftmargin=*]}{\end{xlist}}
+                widest=iv.]}{\end{xlist}}
 \newenvironment{xlista}{%
-  \begin{xlist}[topsep=1.5\p@ plus \p@,
-                itemsep=1.5\p@ plus \p@,
-                parsep=\p@ plus .5\p@ minus .5\p@,
-                labelsep=*,
-                label={\alph*.},
+  \begin{xlist}[label={\alph*.},
                 ref={\arabic{exei}\alph*},
-                widest=a.,
-                labelsep=*,
-                align=left,
-                itemindent=0em,
-                leftmargin=*]}{\end{xlist}}
+                widest=a.]}{\end{xlist}}
 \newenvironment{xlistn}{%
-  \begin{xlist}[topsep=1.5\p@ plus \p@,
-                itemsep=1.5\p@ plus \p@,
-                parsep=\p@ plus .5\p@ minus .5\p@,
-                labelsep=*,
-                label={\arabic*.},
+  \begin{xlist}[label={\arabic*.},
                 ref={\arabic{exei}\arabic*},
-                widest=9.,
-                labelsep=*,
-                align=left,
-                itemindent=0em,
-                leftmargin=*]}{\end{xlist}}
+                widest=9.]}{\end{xlist}}
 \newenvironment{xlistI}{%
-  \begin{xlist}[topsep=1.5\p@ plus \p@,
-                itemsep=1.5\p@ plus \p@,
-                parsep=\p@ plus .5\p@ minus .5\p@,
-                labelsep=*,
-                label={\Roman*.},
+  \begin{xlist}[label={\Roman*.},
                 ref={\arabic{exei}\Roman*},
-                widest=IV.,
-                labelsep=*,
-                align=left,
-                itemindent=0em,
-                leftmargin=*]}{\end{xlist}}
+                widest=IV.]}{\end{xlist}}
 \newenvironment{xlistA}{%
-  \begin{xlist}[topsep=1.5\p@ plus \p@,
-                itemsep=1.5\p@ plus \p@,
-                parsep=\p@ plus .5\p@ minus .5\p@,
-                labelsep=*,
-                label={\Alph*.},
+  \begin{xlist}[label={\Alph*.},
                 ref={\arabic{exei}\Alph*},
-                widest=M.,
-                labelsep=*,
-                align=left,
-                itemindent=0em,
-                leftmargin=*]}{\end{xlist}}
+                widest=M.]}{\end{xlist}}
 
 %%% subeex macro without vertical spacing code from gb4e
 \def\@subex#1#2{%
