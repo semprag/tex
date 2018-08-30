@@ -65,6 +65,12 @@ separator() {
   printf '<div class="separator"></div>\n'
 }
 
+if [[ -t 1 ]]; then
+  # drop wget logging (a.o. errors) in case the user copy&pastes from the terminal
+  >&2 printf '<!-- /dev/stdout is a terminal; suppressing subsequent /dev/stderr -->\n'
+  exec 2>>/dev/null
+fi
+
 volume_contents 11
 if [[ ${#FORTHCOMING[@]} -gt 0 ]]; then
   >&2 printf 'Writing forthcoming HTML file(s): %s\n' "${FORTHCOMING[*]}"
