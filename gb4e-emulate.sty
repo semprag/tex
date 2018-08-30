@@ -27,22 +27,118 @@
 \RequirePackage{cgloss4e}
 % Set up equivalent lists
 \newlist{exe}{enumerate}{1}
-\setlist[exe]{resume=exe@series,label={(\arabic*)},widest=888,align=left,topsep= 7\p@ plus2\p@ minus3\p@,itemsep=3\p@ plus2\p@,ref=\arabic*,leftmargin=*}
+\setlist[exe]{
+  resume=exe@series,
+  label={(\arabic*)},
+  widest=888,
+  align=left,
+  topsep=7\p@ plus 2\p@ minus 3\p@,
+  itemsep=3\p@ plus 2\p@,
+  ref=\arabic*,
+  leftmargin=*}
 \newlist{xlist}{enumerate}{3}
-\setlist[xlist,1]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,labelsep=*,parsep=\p@ plus.5\p@ minus.5\p@,label={\alph*.},ref={\arabic{exei}\alph*}, widest=a.,align=left,itemindent=0em,leftmargin=*}
-\setlist[xlist,2]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,labelsep=*,parsep=\p@ plus.5\p@ minus.5\p@,label={\roman*.},ref={\thexlisti.\roman*}, widest=iv.,align=left,itemindent=0em,leftmargin=*}
-\setlist[xlist,3]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,labelsep=*,parsep=\p@ plus.5\p@ minus.5\p@,label={\arabic*.},ref={\thexlistii.\arabic*}, widest=9.,align=left,itemindent=0em,leftmargin=*}
+\setlist[xlist,1]{
+  topsep=1.5\p@ plus \p@,
+  itemsep=1.5\p@ plus \p@,
+  labelsep=*,
+  parsep=\p@ plus .5\p@ minus .5\p@,
+  label={\alph*.},
+  ref={\arabic{exei}\alph*},
+  widest=a.,
+  align=left,
+  itemindent=0em,
+  leftmargin=*}
+\setlist[xlist,2]{
+  topsep=1.5\p@ plus \p@,
+  itemsep=1.5\p@ plus \p@,
+  labelsep=*,
+  parsep=\p@ plus .5\p@ minus .5\p@,
+  label={\roman*.},
+  ref={\thexlisti.\roman*},
+  widest=iv.,
+  align=left,
+  itemindent=0em,
+  leftmargin=*}
+\setlist[xlist,3]{
+  topsep=1.5\p@ plus \p@,
+  itemsep=1.5\p@ plus \p@,
+  labelsep=*,
+  parsep=\p@ plus .5\p@ minus .5\p@,
+  label={\arabic*.},
+  ref={\thexlistii.\arabic*},
+  widest=9.,
+  align=left,
+  itemindent=0em,
+  leftmargin=*}
 % emulate specific lists
-\newenvironment{xlisti}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\roman*.},ref={\arabic{exei}\roman*},widest=iv.,labelsep=*,align=left,itemindent=0em,leftmargin=*]}{\end{xlist}}
-\newenvironment{xlista}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\alph*.},ref={\arabic{exei}\alph*},widest=a.,labelsep=*,align=left,itemindent=0em,leftmargin=*]}{\end{xlist}}
-\newenvironment{xlistn}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\arabic*.},ref={\arabic{exei}\arabic*},widest=9.,labelsep=*,align=left,itemindent=0em,leftmargin=*]}{\end{xlist}}
-\newenvironment{xlistI}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\Roman*.},ref={\arabic{exei}\Roman*},widest=IV.,labelsep=*,align=left,itemindent=0em,leftmargin=*]}{\end{xlist}}
-\newenvironment{xlistA}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\Alph*.},ref={\arabic{exei}\Alph*},widest=M.,labelsep=*,align=left,itemindent=0em,leftmargin=*]}{\end{xlist}}
+\newenvironment{xlisti}{%
+  \begin{xlist}[topsep=1.5\p@ plus \p@,
+                itemsep=1.5\p@ plus \p@,
+                parsep=\p@ plus .5\p@ minus .5\p@,
+                labelsep=*,
+                label={\roman*.},
+                ref={\arabic{exei}\roman*},
+                widest=iv.,
+                labelsep=*,
+                align=left,
+                itemindent=0em,
+                leftmargin=*]}{\end{xlist}}
+\newenvironment{xlista}{%
+  \begin{xlist}[topsep=1.5\p@ plus \p@,
+                itemsep=1.5\p@ plus \p@,
+                parsep=\p@ plus .5\p@ minus .5\p@,
+                labelsep=*,
+                label={\alph*.},
+                ref={\arabic{exei}\alph*},
+                widest=a.,
+                labelsep=*,
+                align=left,
+                itemindent=0em,
+                leftmargin=*]}{\end{xlist}}
+\newenvironment{xlistn}{%
+  \begin{xlist}[topsep=1.5\p@ plus \p@,
+                itemsep=1.5\p@ plus \p@,
+                parsep=\p@ plus .5\p@ minus .5\p@,
+                labelsep=*,
+                label={\arabic*.},
+                ref={\arabic{exei}\arabic*},
+                widest=9.,
+                labelsep=*,
+                align=left,
+                itemindent=0em,
+                leftmargin=*]}{\end{xlist}}
+\newenvironment{xlistI}{%
+  \begin{xlist}[topsep=1.5\p@ plus \p@,
+                itemsep=1.5\p@ plus \p@,
+                parsep=\p@ plus .5\p@ minus .5\p@,
+                labelsep=*,
+                label={\Roman*.},
+                ref={\arabic{exei}\Roman*},
+                widest=IV.,
+                labelsep=*,
+                align=left,
+                itemindent=0em,
+                leftmargin=*]}{\end{xlist}}
+\newenvironment{xlistA}{%
+  \begin{xlist}[topsep=1.5\p@ plus \p@,
+                itemsep=1.5\p@ plus \p@,
+                parsep=\p@ plus .5\p@ minus .5\p@,
+                labelsep=*,
+                label={\Alph*.},
+                ref={\arabic{exei}\Alph*},
+                widest=M.,
+                labelsep=*,
+                align=left,
+                itemindent=0em,
+                leftmargin=*]}{\end{xlist}}
 
 %%% subeex macro without vertical spacing code from gb4e
-\def\@subex#1#2{\settowidth{\labelwidth}{#1}\itemindent\z@\labelsep#2%
-         \parsep\p@ plus.5\p@ minus.5\p@%
-         \leftmargin\labelwidth\advance\leftmargin#2\relax
+\def\@subex#1#2{%
+  \settowidth{\labelwidth}{#1}%
+  \itemindent\z@\labelsep#2%
+  \parsep\p@ plus .5\p@ minus .5\p@%
+  \leftmargin\labelwidth%
+  \advance\leftmargin#2\relax
 }
 %%% the example-items from gb4e
 \def\ex{\@ifnextchar [{\@ex}{\item}}
