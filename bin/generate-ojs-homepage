@@ -41,7 +41,7 @@ if ! command -v pup >/dev/null 2>&1; then
 Could not find 'pup' command, which is used for "Parsing HTML at the command line".
 Pup is available through Homebrew; to install:
 
-    brew install pup
+    brew install https://raw.githubusercontent.com/EricChiang/pup/master/pup.rb
 
 See https://github.com/ericchiang/pup for alternative installation methods.
 MISSING
