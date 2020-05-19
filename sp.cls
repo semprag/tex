@@ -96,9 +96,9 @@
   \RequirePackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
   % load Lucida font files from local directory if possible
-  \IfFileExists{./fonts/LucidaBrightOT.otf}{
-    \ClassInfo{sp.cls}{Loading LucidaOT files from local directory (./fonts/)}
-    \defaultfontfeatures+{Path=./fonts/,Extension=.otf}
+  \IfFontExistsTF{LucidaBrightOT.otf}{
+    \ClassInfo{sp.cls}{Loading LucidaOT files locally}
+    \defaultfontfeatures+{Extension=.otf}
     % pre-configure the fonts for loading via their canonical / system name
     % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
     \defaultfontfeatures[Lucida Bright OT]{
