@@ -96,8 +96,11 @@
   \RequirePackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
   % load Lucida font files from local directory if possible
-  \IfFontExistsTF{LucidaBrightOT.otf}{
-    \ClassInfo{sp.cls}{Loading LucidaOT files locally}
+  % three cases: (i) found in texmf tree, (ii) found in local `./fonts`
+  % subfolder, (iii) found in system (macOS, in particular)
+  \IfFontExistsTF{LucidaBrightOT.otf}{%
+    % Case (i): found by `IfFontExistsTF` in texmf tree
+    \ClassInfo{sp.cls}{Loading LucidaOT files from texmf tree}
     \defaultfontfeatures+{Extension=.otf}
     % pre-configure the fonts for loading via their canonical / system name
     % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
@@ -120,11 +123,40 @@
     % so \setmathfont must be called distinctly in each branch
     \setmathfont{LucidaBrightMathOT}
     \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
-  }{
-    \ClassInfo{sp.cls}{Loading LucidaOT fonts from system}
-    \setmathfont{Lucida Bright Math OT}
+  }{%
+    % moving on to cases (ii) and (iii)
+    \IfFileExists{./fonts/LucidaBrightOT.otf}{%
+      % Case (ii): file exists in local `./fonts` subfolder
+      \ClassInfo{sp.cls}{Loading LucidaOT files from local directory (./fonts/)}
+      \defaultfontfeatures+{Path=./fonts/,Extension=.otf}
+      % pre-configure the fonts for loading via their canonical / system name
+      % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
+      \defaultfontfeatures[Lucida Bright OT]{
+        UprightFont=LucidaBrightOT,
+        BoldFont=LucidaBrightOT-Demi,
+        ItalicFont=LucidaBrightOT-Italic,
+        BoldItalicFont=LucidaBrightOT-DemiItalic}
+      \defaultfontfeatures[Lucida Sans OT]{
+        UprightFont=LucidaSansOT,
+        BoldFont=LucidaSansOT-Demi,
+        ItalicFont=LucidaSansOT-Italic,
+        BoldItalicFont=LucidaSansOT-DemiItalic}
+      \defaultfontfeatures[Lucida Sans Typewriter OT]{
+        UprightFont=LucidaSansTypewriterOT-Bold,
+        BoldFont=LucidaSansTypewriterOT-Bold,
+        ItalicFont=LucidaSansTypewriterOT-Oblique,
+        BoldItalicFont=LucidaSansTypewriterOT-BoldOblique}
+      % there is no such pre-configuration implemented in unicode-math,
+      % so \setmathfont must be called distinctly in each branch
+      \setmathfont{LucidaBrightMathOT}
+      \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
+    }{%
+      % Case (iii): we'll better find it in the system
+      \ClassInfo{sp.cls}{Loading LucidaOT fonts from system}
+      \setmathfont{Lucida Bright Math OT}}
   }
-  % load fonts using their canonical / system names
+  % now that the fonts have been located,
+  % load them using their canonical / system names
   \setmainfont{Lucida Bright OT}[Numbers=OldStyle]
   \setsansfont{Lucida Sans OT}
   \setmonofont{Lucida Sans Typewriter OT}
