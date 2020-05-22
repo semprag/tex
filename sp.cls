@@ -180,21 +180,28 @@
 }{}
 \RequirePackage[hyphens]{url}
 
-% if [biblatex] is requested, check that biblatex-sp-unified is available;
-% if the style cannot be found, fallback to BibTeX.
+% if [biblatex] is requested, check that either the new unified.bbx or the old
+% biblatex-sp-unified is available;
+% if neither style can be found, fallback to BibTeX.
 \if@biblatex
-  \IfFileExists{biblatex-sp-unified.bbx}{}{
-    \ClassWarning{sp.cls}{BibLaTeX requested but cannot find style; falling back to BibTeX}
-    \@biblatexfalse
-  }
+  \IfFileExists{unified.bbx}
+    {\RequirePackage[backend=biber,
+                    style=unified,
+                    natbib,
+                    maxcitenames=3,
+                    maxbibnames=99]{biblatex}}
+    {\IfFileExists{biblatex-sp-unified.bbx}
+       {\RequirePackage[backend=biber,
+                        bibstyle=biblatex-sp-unified,
+                        citestyle=sp-authoryear-comp,
+                        natbib,
+                        maxcitenames=3,
+                        maxbibnames=99]{biblatex}}
+       {\ClassWarning{sp.cls}{BibLaTeX requested but cannot find style; falling back to BibTeX}
+         \@biblatexfalse}}
 \fi
 
 \if@biblatex
-  \RequirePackage[backend=biber,
-                  bibstyle=biblatex-sp-unified,
-                  citestyle=sp-authoryear-comp,
-                  maxcitenames=3,
-                  maxbibnames=99]{biblatex}
 \else
   \RequirePackage{natbib}
   \bibpunct[: ]{(}{)}{,}{a}{}{,}
