@@ -599,8 +599,8 @@
 %=========================== linguex settings ========================
 
 \if@linguex
-  \RequirePackage{linguex}%
-  \renewcommand{\firstrefdash}{}%
+  \AtEndPreamble{\RequirePackage{linguex}}%
+  \AtEndPreamble{\renewcommand{\firstrefdash}{}}%
   \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
 \fi
 
