@@ -624,6 +624,9 @@
     aboveexskip=1ex,
     belowexskip=2ex,
     everygla=}
+  \ifxetex
+    \let\expexgla\gla%
+    \AtBeginDocument{\let\gla\expexgla}
   \def\everyfootnote{%
     \keepexcntlocal
     \excnt=1
