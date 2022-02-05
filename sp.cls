@@ -233,6 +233,15 @@
          \@biblatexfalse}}
 \fi
 
+% when a bibentry has a DOI, we should not also display a URL:
+
+\if@biblatex
+   \DeclareSourcemap{
+        \maps[datatype=bibtex]{
+        \map{\step[fieldsource=doi,final]
+             \step[fieldset=url,null]
+             \step[fieldset=urldate,null]}}}
+
 \if@biblatex
 \else
   \RequirePackage{natbib}
