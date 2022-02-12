@@ -1,14 +1,6 @@
+%% sp-hyperxmp based on hyperxmp
 %%
-%% This is file `hyperxmp.sty',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% hyperxmp.dtx  (with options: `package')
-%% 
-%% This is a generated file.
-%% 
-%% Copyright (C) 2011-2020 by Scott Pakin <scott+hyxmp@pakin.org>
+%% hyperxmp Copyright (C) 2011-2020 by Scott Pakin <scott+hyxmp@pakin.org>
 %% 
 %% This file may be distributed and/or modified under the conditions of
 %% the LaTeX Project Public License, either version 1.3c of this license
@@ -21,8 +13,7 @@
 %% version 2008/05/04 or later.
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesPackage{hyperxmp}
-    [2020/11/22 v5.9 Store hyperref metadata in XMP format]
+\ProvidesPackage{sp-hyperxmp}[2022/02/11 Modification of hyperxmp (v5.9) to store S&P metadata in XMP format]
 \edef\hyxmp@dq@code{\the\catcode`\"}
 \catcode`\"=12
 \@ifundefined{AtEndDocument}{%
@@ -1620,6 +1611,58 @@ ______</Iptc4xmpCore:CreatorContactInfo>^^J%
   \fi
   \hyxmp@add@simple{xmpTPg:NPages}{\@pdfnumpages}%
 }
+\newcommand*{\hyxmp@cc@schema}{%
+  \hyxmp@add@to@xml{%
+______<rdf:Description rdf:about="doi:\@pdfdoi"^^J%
+____________xmlns:cc="http://creativecommons.org/ns">^^J%
+_________<cc:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/">^^J%
+  }%
+  \hyxmp@add@to@xml{%
+______</rdf:Description>^^J%
+  }%
+}
+\newcommand*{\hyxmp@bibtexlist@to@xml}[3]{%
+  \ifx#3\@empty
+  \else
+    \hyxmp@add@to@xml{%
+_________<bibtex:#1>^^J%
+____________<rdf:#2>^^J%
+    }%
+    \bgroup
+      \hyxmp@commas@to@list\hyxmp@list{#3}%
+      \def\@elt##1{%
+        \hyxmp@xmlify{##1}%
+        \hyxmp@add@to@xml{%
+_______________<rdf:li>\hyxmp@xmlified</rdf:li>^^J%
+        }%
+      }%
+      \hyxmp@list
+    \egroup
+    \hyxmp@add@to@xml{%
+____________</rdf:#2>^^J%
+_________</bibtex:#1>^^J%
+    }%
+  \fi
+}
+\newcommand*{\hyxmp@bibteXMP@schema}{%
+  \hyxmp@add@to@xml{%
+______<rdf:Description xmlns:bibtex="http://jabref.sourceforge.net/bibteXMP/">^^J%
+_________<bibtex:bibtexkey>sp.\@pdfvolumenum.\@pdfissuenum</bibtex:bibtexkey>^^J%
+_________<bibtex:year>\@spyear</bibtex:year>^^J%
+_________<bibtex:title>\@pdftitle</bibtex:title>^^J%
+_________<bibtex:url>https://doi.org/\@pdfdoi</bibtex:url>^^J%
+_________<bibtex:doi>\@pdfdoi</bibtex:doi>^^J%
+_________<bibtex:journal>\@pdfpublication</bibtex:journal>^^J%
+_________<bibtex:volume>\@pdfvolumenum</bibtex:volume>^^J%
+_________<bibtex:number>\@pdfissuenum</bibtex:number>^^J%
+_________<bibtex:pages>1--\@splastpage</bibtex:pages>^^J%
+_________<bibtex:entrytype>Article</bibtex:entrytype>^^J%
+  }%
+  \hyxmp@bibtexlist@to@xml{author}{Seq}{\@pdfauthor}%
+  \hyxmp@add@to@xml{%
+______</rdf:Description>^^J%
+  }%
+}
 \ifLuaTeX
   \newcatcodetable\hyxmp@cct
   \savecatcodetable\hyxmp@cct
@@ -2082,6 +2125,8 @@ _____________________xmlns:pdfaField="http://www.aiim.org/pdfa/ns/field\hyxmp@ha
   \hyxmp@mm@schema
   \hyxmp@iptc@schema
   \hyxmp@prism@schema
+  \hyxmp@cc@schema
+  \hyxmp@bibteXMP@schema
   \hyxmp@jav@schema
   \hyxmp@xmptpg@schema
   \hyxmp@add@to@xml{%
