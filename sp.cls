@@ -241,6 +241,7 @@
         \map{\step[fieldsource=doi,final]
              \step[fieldset=url,null]
              \step[fieldset=urldate,null]}}}
+\fi
 
 \if@biblatex
 \else
@@ -627,6 +628,7 @@
   \ifxetex
     \let\expexgla\gla%
     \AtBeginDocument{\let\gla\expexgla}
+  \fi
   \def\everyfootnote{%
     \keepexcntlocal
     \excnt=1
