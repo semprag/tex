@@ -467,7 +467,7 @@
   % understand. For example, if `pdfkeywords={\@pdfkeywords}` is set here,
   % hyperxmp inserts weird UTF byte order markers that generate chinese
   % characters, but it is fine if this is set in the preamble.
-  \AtBeginDocument{%
+  \AtEndPreamble{%
   \hypersetup{%
     unicode=true,
     pdfmetalang={en},
