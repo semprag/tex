@@ -288,6 +288,13 @@
 
 \RequirePackage[usenames,dvipsnames,table]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
+
+% hyperxmp prefers to be loaded before hyperref, so we load it now,
+% if we're doing final typesetting
+\if@final
+\RequirePackage{hyperxmp}
+\fi
+
 \RequirePackage[colorlinks,breaklinks,
                 linkcolor=splinkcolor,
                 urlcolor=splinkcolor,
@@ -297,6 +304,12 @@
                 pdfpagelabels,
                 bookmarks=false,
                 pdfstartview=FitH]{hyperref}
+
+% tell hyperref/hyperxmp to keep pdf info of the old kind
+\if@final
+\hypersetup{keeppdfinfo}
+\fi
+
 \newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
 \RequirePackage{graphicx}
@@ -307,7 +320,7 @@
 %============================= metadata ==============================
 
 \def\@pdfauthor{\relax}
-\newcommand{\pdfauthor}[1]{\gdef\@pdfauthor{#1}}
+\newcommand{\pdfauthor}[1]{\gdef\@pdfauthor{#1}\gdef\@copyrightowner{#1}}
 \def\@pdftitle{\relax}
 \newcommand{\pdftitle}[1]{\gdef\@pdftitle{#1}}
 \def\@pdfkeywords{\relax}
@@ -327,7 +340,6 @@
 \def\@splastpage{}
 \newcommand{\splastpage}[1]{\gdef\@splastpage{#1}}
 
-\def\@copyrightowner{\@shortauthor}
 \newcommand{\copyrightowner}[1]{\gdef\@copyrightowner{#1}}
 
 %=====================================================================
@@ -457,13 +469,10 @@
 
 \if@final
   % load global variables into metadata
-  \RequirePackage{hyperxmp}
-  \AtEndPreamble{%
+  \AfterEndPreamble{%
     \hypersetup{%
-      keeppdfinfo,
       unicode=true,
       pdfmetalang={en},
-      pdfauthor={\@pdfauthor},%
       pdfcopyright={Copyright \@spyear, \@copyrightowner. This is an open-access article distributed under the terms of a Creative Commons Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0).},%
       pdflicenseurl={http://creativecommons.org/licenses/by-nc/3.0},%
       pdfsubject={Semantics and Pragmatics \@spvolume(\@sparticle). \@spyear. \@spdoi},%
