@@ -313,10 +313,6 @@
 \def\@pdfkeywords{\relax}
 \newcommand{\pdfkeywords}[1]{\gdef\@pdfkeywords{#1}}
 
-\hypersetup{pdfauthor=\@pdfauthor,
-            pdftitle=\@pdftitle,
-            pdfkeywords=\@pdfkeywords}
-
 \def\@spvolume{}
 \newcommand{\spvolume}[1]{\gdef\@spvolume{#1}}
 
@@ -461,36 +457,34 @@
 
 \if@final
   % load global variables into metadata
-  \RequirePackage{sp-hyperxmp}
-  % these values are set in the doc preamble, so defer the hypersetup call until
-  % we are sure of them. Note: there are encoding issues here that I don't
-  % understand. For example, if `pdfkeywords={\@pdfkeywords}` is set here,
-  % hyperxmp inserts weird UTF byte order markers that generate chinese
-  % characters, but it is fine if this is set in the preamble.
+  \RequirePackage{hyperxmp}
   \AtEndPreamble{%
-  \hypersetup{%
-    unicode=true,
-    pdfmetalang={en},
-    % pdfauthor={\@pdfauthor},%
-    % pdftitle={\@pdftitle},%
-    % pdfkeywords={\@pdfkeywords},%
-    pdfcopyright={Copyright \@spyear, \@pdfauthor. This is an open-access article distributed under the terms of a Creative Commons Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0).},%
-    pdflicenseurl={http://creativecommons.org/licenses/by-nc/3.0},%
-    pdfsubject={Semantics and Pragmatics \@spvolume(\@sparticle). \@spyear. \@spdoi},%
-    pdfpublisher={The Linguistics Society of America},%
-    pdfpublication={Semantics and Pragmatics},%
-    pdfpagerange={1-\@splastpage},%
-    pdfdoi={\@spdoi},%
-    pdfpubtype={journal},%
-    pdfissn={1937-8912},%
-    pdfurl={https://doi.org/\@spdoi},%
-    pdfvolumenum={\@spvolume},%
-    pdfissuenum={\@sparticle}}}
+    \hypersetup{%
+      keeppdfinfo,
+      unicode=true,
+      pdfmetalang={en},
+      pdfauthor={\@pdfauthor},%
+      pdfcopyright={Copyright \@spyear, \@copyrightowner. This is an open-access article distributed under the terms of a Creative Commons Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0).},%
+      pdflicenseurl={http://creativecommons.org/licenses/by-nc/3.0},%
+      pdfsubject={Semantics and Pragmatics \@spvolume(\@sparticle). \@spyear. \@spdoi},%
+      pdfpublisher={The Linguistics Society of America},%
+      pdfpublication={Semantics and Pragmatics},%
+      pdfpagerange={1-\@splastpage},%
+      pdfdoi={\@spdoi},%
+      pdfpubtype={journal},%
+      pdfissn={1937-8912},%
+      pdfurl={https://doi.org/\@spdoi},%
+      pdfvolumenum={\@spvolume},%
+      pdfissuenum={\@sparticle}}}
   \thispagestyle{spfirstheadings}
 \else
+  % load minimal metadata for non-final (or non-S&P) pdfs
+  \hypersetup{%
+    pdfauthor=\@pdfauthor,
+    pdftitle=\@pdftitle,
+    pdfkeywords=\@pdfkeywords}
   \thispagestyle{empty}
 \fi
-
 
 %=====================================================================
 %=========================== frontmatter =============================
