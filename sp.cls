@@ -159,7 +159,7 @@
   % load them using their canonical / system names
   \setmainfont{Lucida Bright OT}[Numbers=OldStyle]
   \setsansfont{Lucida Sans OT}
-  \setmonofont{Lucida Sans Typewriter OT}
+  \setmonofont{Lucida Console DK}
   % shim several math commands to approximate definitions in lucimatx.sty
   \def\llbracket{\symbol{"27E6}} % MATHEMATICAL LEFT WHITE SQUARE BRACKET
   \def\rrbracket{\symbol{"27E7}} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET
