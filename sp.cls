@@ -119,6 +119,11 @@
       BoldFont=LucidaSansTypewriterOT-Bold,
       ItalicFont=LucidaSansTypewriterOT-Oblique,
       BoldItalicFont=LucidaSansTypewriterOT-BoldOblique}
+    \defaultfontfeatures[Lucida Console DK]{
+      UprightFont=LucidaConsoleDK,
+      BoldFont=LucidaConsoleDK-Bold,
+      ItalicFont=LucidaConsoleDK-Italic,
+      BoldItalicFont=LucidaConsoleDK-BoldItalic}
     % there is no such pre-configuration implemented in unicode-math,
     % so \setmathfont must be called distinctly in each branch
     \setmathfont{LucidaBrightMathOT}
@@ -146,6 +151,11 @@
         BoldFont=LucidaSansTypewriterOT-Bold,
         ItalicFont=LucidaSansTypewriterOT-Oblique,
         BoldItalicFont=LucidaSansTypewriterOT-BoldOblique}
+      \defaultfontfeatures[Lucida Console DK]{
+        UprightFont=LucidaConsoleDK,
+        BoldFont=LucidaConsoleDK-Bold,
+        ItalicFont=LucidaConsoleDK-Italic,
+        BoldItalicFont=LucidaConsoleDK-BoldItalic}
       % there is no such pre-configuration implemented in unicode-math,
       % so \setmathfont must be called distinctly in each branch
       \setmathfont{LucidaBrightMathOT}
