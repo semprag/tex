@@ -218,7 +218,7 @@
 % microtype handles punctuation at the right margin. We want it for
 % the final product, but it's okay if authors lack it.
 \IfFileExists{microtype.sty}{%
-  \RequirePackage[final,protrusion={true,compatibility}]{microtype}
+  \RequirePackage[final,protrusion={true,compatibility},verbose=silent]{microtype}
 }{}
 \RequirePackage[hyphens]{url}
 
