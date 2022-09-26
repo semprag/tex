@@ -218,7 +218,7 @@
 % microtype handles punctuation at the right margin. We want it for
 % the final product, but it's okay if authors lack it.
 \IfFileExists{microtype.sty}{%
-  \RequirePackage[final,protrusion={true,compatibility}]{microtype}
+  \RequirePackage[final,protrusion={true,compatibility},verbose=silent]{microtype}
 }{}
 \RequirePackage[hyphens]{url}
 
@@ -288,6 +288,13 @@
 
 \RequirePackage[usenames,dvipsnames,table]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
+
+% hyperxmp prefers to be loaded before hyperref, so we load it now,
+% if we're doing final typesetting
+\if@final
+\RequirePackage{hyperxmp}
+\fi
+
 \RequirePackage[colorlinks,breaklinks,
                 linkcolor=splinkcolor,
                 urlcolor=splinkcolor,
@@ -297,6 +304,12 @@
                 pdfpagelabels,
                 bookmarks=false,
                 pdfstartview=FitH]{hyperref}
+
+% tell hyperref/hyperxmp to keep pdf info of the old kind
+\if@final
+\hypersetup{keeppdfinfo}
+\fi
+
 \newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
 \RequirePackage{graphicx}
@@ -307,15 +320,11 @@
 %============================= metadata ==============================
 
 \def\@pdfauthor{\relax}
-\newcommand{\pdfauthor}[1]{\gdef\@pdfauthor{#1}}
+\newcommand{\pdfauthor}[1]{\gdef\@pdfauthor{#1}\gdef\@copyrightowner{#1}}
 \def\@pdftitle{\relax}
 \newcommand{\pdftitle}[1]{\gdef\@pdftitle{#1}}
 \def\@pdfkeywords{\relax}
 \newcommand{\pdfkeywords}[1]{\gdef\@pdfkeywords{#1}}
-
-\hypersetup{pdfauthor=\@pdfauthor,
-            pdftitle=\@pdftitle,
-            pdfkeywords=\@pdfkeywords}
 
 \def\@spvolume{}
 \newcommand{\spvolume}[1]{\gdef\@spvolume{#1}}
@@ -331,7 +340,6 @@
 \def\@splastpage{}
 \newcommand{\splastpage}[1]{\gdef\@splastpage{#1}}
 
-\def\@copyrightowner{\@shortauthor}
 \newcommand{\copyrightowner}[1]{\gdef\@copyrightowner{#1}}
 
 %=====================================================================
@@ -461,12 +469,31 @@
 
 \if@final
   % load global variables into metadata
-  \RequirePackage{sp-hyperxmp}
+  \AfterEndPreamble{%
+    \hypersetup{%
+      unicode=true,
+      pdfmetalang={en},
+      pdfcopyright={Copyright \@spyear, \@copyrightowner. This is an open-access article distributed under the terms of a Creative Commons Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0).},%
+      pdflicenseurl={http://creativecommons.org/licenses/by-nc/3.0},%
+      pdfsubject={Semantics and Pragmatics \@spvolume(\@sparticle). \@spyear. \@spdoi},%
+      pdfpublisher={The Linguistics Society of America},%
+      pdfpublication={Semantics and Pragmatics},%
+      pdfpagerange={1-\@splastpage},%
+      pdfdoi={\@spdoi},%
+      pdfpubtype={journal},%
+      pdfissn={1937-8912},%
+      pdfurl={https://doi.org/\@spdoi},%
+      pdfvolumenum={\@spvolume},%
+      pdfissuenum={\@sparticle}}}
   \thispagestyle{spfirstheadings}
 \else
+  % load minimal metadata for non-final (or non-S&P) pdfs
+  \hypersetup{%
+    pdfauthor=\@pdfauthor,
+    pdftitle=\@pdftitle,
+    pdfkeywords=\@pdfkeywords}
   \thispagestyle{empty}
 \fi
-
 
 %=====================================================================
 %=========================== frontmatter =============================
