@@ -170,6 +170,8 @@
   \setmainfont{Lucida Bright OT}[Numbers=OldStyle]
   \setsansfont{Lucida Sans OT}
   \setmonofont{Lucida Console DK}
+  % borrow \ulcorner and \urcorner from Latin Modern OT
+  \setmathfont{latinmodern-math.otf}[range={"231C-"231D}]
   % shim several math commands to approximate definitions in lucimatx.sty
   \def\llbracket{\symbol{"27E6}} % MATHEMATICAL LEFT WHITE SQUARE BRACKET
   \def\rrbracket{\symbol{"27E7}} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET
@@ -177,8 +179,8 @@
   \def\Join{\symbol{"22C8}} % BOWTIE
   \def\Box{\symbol{"25A1}} % WHITE SQUARE
   \def\Diamond{\symbol{"25C7}} % WHITE DIAMOND
-  \def\ulcorner{\symbol{"23A1}} % LEFT SQUARE BRACKET UPPER CORNER
-  \def\urcorner{\symbol{"23A4}} % RIGHT SQUARE BRACKET UPPER CORNER
+  \let\models\vDash
+  \let\nmodels\nvDash
 \fi
 \ifnum \@fontenum < 2
   % load shims for non-Lucida fonts (0 = cm and 1 = times)
