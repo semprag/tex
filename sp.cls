@@ -93,7 +93,7 @@
   \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
 \or % 3 = lucidaot
   \RequirePackage{fontspec}
-  \RequirePackage{unicode-math}
+  \RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
   % load Lucida font files from local directory if possible
   % three cases: (i) found in texmf tree, (ii) found in local `./fonts`
