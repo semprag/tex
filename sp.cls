@@ -291,12 +291,6 @@
 \RequirePackage[usenames,dvipsnames,table]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
 
-% hyperxmp prefers to be loaded before hyperref, so we load it now,
-% if we're doing final typesetting
-\if@final
-\RequirePackage{hyperxmp}
-\fi
-
 \RequirePackage[colorlinks,breaklinks,
                 linkcolor=splinkcolor,
                 urlcolor=splinkcolor,
@@ -306,6 +300,12 @@
                 pdfpagelabels,
                 bookmarks=false,
                 pdfstartview=FitH]{hyperref}
+
+% As of hyperxmp v5.12, dated 2023/09/10, hyperxmp is supposed to be loaded after hyperref
+% but before any \hypersetup commands, so we load it now, if we're doing final typesetting
+\if@final
+\RequirePackage{hyperxmp}
+\fi
 
 % tell hyperref/hyperxmp to keep pdf info of the old kind
 \if@final
