@@ -92,7 +92,6 @@
   \DeclareTextCommand{\textbullet}{\encodingdefault}{\UseTextSymbol{OMS}\textbullet} % the default is tiny
   \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
 \or % 3 = lucidaot
-  \RequirePackage{fontspec}
   \RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
   % load Lucida font files from local directory if possible
