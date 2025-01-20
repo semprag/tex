@@ -148,9 +148,11 @@
   % some needed enrichments
   % borrow \ulcorner and \urcorner from Latin Modern OT
   \setmathfont{latinmodern-math.otf}[range={"231C-"231D}]
-  % some adjustments
-  \let\models\vDash
-  \let\nmodels\nvDash
+  % some adjustments (these need to be done AtBeginDocument once unicode-math has applied)
+  \AtBeginDocument{%
+    \let\models\vDash
+    \let\nmodels\nvDash
+    }
 \else % otdefault, will use LatinModern, unless the user specifies their own fonts
   \setmathfont{latinmodern-math.otf}
 \fi
@@ -171,12 +173,14 @@
 
 \ifnum \@fontenum > 2 
   % some older names as aliases for unicode-math commands
-  \let\llbracket\lBrack
-  \let\rrbracket\rBrack
-  \let\leadsto\rightsquigarrow
-  \let\Join\bowtie
-  \let\Box\mdlgwhtsquare
-  \let\Diamond\mdlgwhtdiamond
+  \AtBeginDocument{%
+    \let\llbracket\lBrack
+    \let\rrbracket\rBrack
+    \let\leadsto\rightsquigarrow
+    \let\Join\bowtie
+    \let\Box\mdlgwhtsquare
+    \let\Diamond\mdlgwhtdiamond
+    }
 \fi
 
 % Strong widow and orphan control
