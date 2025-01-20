@@ -36,7 +36,6 @@
 \newcount\@examplenum
 % production settings
 \newif\if@biblatex
-\newif\if@final
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -57,9 +56,8 @@
 \DeclareOption{expex}{\@examplenum=1}
 \DeclareOption{linguex}{\@examplenum=2}
 \DeclareOption{gb4e}{\@examplenum=3}
-% production settings
+% bibliography option (bibtex default but biblatex used in production)
 \DeclareOption{biblatex}{\@biblatextrue}
-\DeclareOption{final}{\@finaltrue}
 
 \ExecuteOptions{times} % times is the default.
 \ProcessOptions\relax
@@ -286,17 +284,6 @@
                 bookmarks=false,
                 pdfstartview=FitH]{hyperref}
 
-% As of hyperxmp v5.12, dated 2023/09/10, hyperxmp is supposed to be loaded after hyperref
-% but before any \hypersetup commands, so we load it now, if we're doing final typesetting
-\if@final
-\RequirePackage{hyperxmp}
-\fi
-
-% tell hyperref/hyperxmp to keep pdf info of the old kind
-\if@final
-\hypersetup{keeppdfinfo}
-\fi
-
 \newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
 \RequirePackage{graphicx}
@@ -307,27 +294,11 @@
 %============================= metadata ==============================
 
 \def\@pdfauthor{\relax}
-\newcommand{\pdfauthor}[1]{\gdef\@pdfauthor{#1}\gdef\@copyrightowner{#1}}
+\newcommand{\pdfauthor}[1]{\gdef\@pdfauthor{#1}}
 \def\@pdftitle{\relax}
 \newcommand{\pdftitle}[1]{\gdef\@pdftitle{#1}}
 \def\@pdfkeywords{\relax}
 \newcommand{\pdfkeywords}[1]{\gdef\@pdfkeywords{#1}}
-
-\def\@spvolume{}
-\newcommand{\spvolume}[1]{\gdef\@spvolume{#1}}
-
-\def\@sparticle{}
-\newcommand{\sparticle}[1]{\gdef\@sparticle{#1}}
-
-\def\@spyear{}
-\newcommand{\spyear}[1]{\gdef\@spyear{#1}}
-
-\def\@spdoi{10.3765/sp.\@spvolume.\@sparticle}
-
-\def\@splastpage{}
-\newcommand{\splastpage}[1]{\gdef\@splastpage{#1}}
-
-\newcommand{\copyrightowner}[1]{\gdef\@copyrightowner{#1}}
 
 %=====================================================================
 %========================== page dimensions ==========================
@@ -406,36 +377,6 @@
 %=====================================================================
 %========================== running headers ==========================
 
-% Prints publication and copyright info on the first page
-\def\ps@spfirstheadings{
-  \let\@mkboth\@gobbletwo
-  \def\@oddhead{%
-    \footnotesize
-    \begin{minipage}[c]{.25in}
-      \includegraphics[width=\textwidth]{sp-logo}
-    \end{minipage}%
-    \begin{minipage}[c]{5.25in}
-      \href{http://semprag.org/}{Semantics \& Pragmatics}
-        Volume \@spvolume,
-        Article \@sparticle\ifx\@empty\@splastpage\else: 1--\@splastpage\fi,
-        \@spyear\\
-      \href{https://doi.org/\@spdoi}{https://doi.org/\@spdoi}
-    \end{minipage}%
-  }
-  \def\@oddfoot{%
-    \footnotesize
-    \begin{minipage}[c]{\textwidth}
-      \copyright \@spyear\ \@copyrightowner\\
-      % Creative commons license text.
-      This is an open-access article distributed under the terms of a
-      Creative Commons Attribution License
-      (\url{https://creativecommons.org/licenses/by/3.0/}).
-    \end{minipage}%
-  }
-  \def\@evenhead{}
-  \def\@evenfoot{}
-}
-
 % Prints abbreviated article information on non-initial pages.
 \def\ps@spheadings{
   \let\@mkboth\@gobbletwo
@@ -443,44 +384,19 @@
   \def\@oddhead{\footnotesize\@shorttitle\hfill}
   % author name(s) on inner (right) side
   \def\@evenhead{\footnotesize\hfill\@shortauthor}
-  % centered page number (with article prefix if available) on all pages
-  \def\@oddfoot{\footnotesize\hfill\ifx\@empty\@sparticle\else\@sparticle:\fi\thepage\hfill}
+  % centered page number on all pages
+  \def\@oddfoot{\footnotesize\hfill\thepage\hfill}
   \let\@evenfoot\@oddfoot
 }
 % set spheadings as default pagestyle throughout document
 \pagestyle{spheadings}
 
-%=====================================================================
-%=========================== final typeset ===========================
-
-
-\if@final
-  % load global variables into metadata
-  \AfterEndPreamble{%
-    \hypersetup{%
-      unicode=true,
-      pdfmetalang={en},
-      pdfcopyright={Copyright \@spyear, \@copyrightowner. This is an open-access article distributed under the terms of a Creative Commons Non-Commercial License (http://creativecommons.org/licenses/by-nc/3.0).},%
-      pdflicenseurl={http://creativecommons.org/licenses/by-nc/3.0},%
-      pdfsubject={Semantics and Pragmatics \@spvolume(\@sparticle). \@spyear. \@spdoi},%
-      pdfpublisher={The Linguistics Society of America},%
-      pdfpublication={Semantics and Pragmatics},%
-      pdfpagerange={1-\@splastpage},%
-      pdfdoi={\@spdoi},%
-      pdfpubtype={journal},%
-      pdfissn={1937-8912},%
-      pdfurl={https://doi.org/\@spdoi},%
-      pdfvolumenum={\@spvolume},%
-      pdfissuenum={\@sparticle}}}
-  \thispagestyle{spfirstheadings}
-\else
-  % load minimal metadata for non-final (or non-S&P) pdfs
-  \hypersetup{%
-    pdfauthor=\@pdfauthor,
-    pdftitle=\@pdftitle,
-    pdfkeywords=\@pdfkeywords}
-  \thispagestyle{empty}
-\fi
+% load minimal metadata for non-final (or non-S&P) pdfs
+\hypersetup{%
+  pdfauthor=\@pdfauthor,
+  pdftitle=\@pdftitle,
+  pdfkeywords=\@pdfkeywords}
+\thispagestyle{empty}
 
 %=====================================================================
 %=========================== frontmatter =============================
