@@ -206,7 +206,6 @@
 \IfFileExists{microtype.sty}{%
   \RequirePackage[final,protrusion={true,compatibility},verbose=silent]{microtype}
 }{}
-\RequirePackage[hyphens]{url}
 
 % if [biblatex] is requested, check that either the new unified.bbx or the old
 % biblatex-sp-unified is available;
@@ -274,6 +273,8 @@
 
 \RequirePackage[dvipsnames,table]{xcolor}
 \definecolor{splinkcolor}{rgb}{.0,.2,.4}
+
+\RequirePackage{xurl}
 
 \RequirePackage[colorlinks,breaklinks,
                 linkcolor=splinkcolor,
