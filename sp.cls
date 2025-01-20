@@ -69,17 +69,6 @@
 % amsmath must be loaded before unicode-math; might as well load it here
 \RequirePackage[leqno,tbtags]{amsmath}
 
-% if 1) lucida is requested, and 2) lucimatx can't be found, and 3) we're using XeTeX,
-% fall back to lucidaot with a warning
-\ifnum \@fontenum = 2
-  \IfFileExists{lucimatx.sty}{}{
-    \ifxetex
-      \ClassWarning{sp.cls}{Lucida requested but cannot find font; trying LucidaOT}
-      \@fontenum=3
-    \fi
-  }
-\fi
-
 % Load fonts as indicated by \@fontenum setting.
 \ifcase \@fontenum % 0 = cm
   % Computer Modern is the standard font; do nothing
