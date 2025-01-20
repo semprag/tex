@@ -286,9 +286,11 @@
 
 \newcommand{\doi}[1]{\url{https://doi.org/#1}}
 \urlstyle{rm}
+
 \RequirePackage{graphicx}
 \RequirePackage{float}
-\RequirePackage[hang,FIGBOTCAP,loose]{subfigure}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
 
 %=====================================================================
 %============================= metadata ==============================
@@ -503,27 +505,32 @@
 \let\@listI\@listi
 \@listi
 
-% typeset figures with lines above and below and the caption title and
-% caption texts in boxes next to each other, top aligned.  these
-% definitions extend those of float.sty.
-%
-% sp caption style
-\newlength\floatc@sp@contentwidth
-\newcommand\floatc@sp[2]{%
-  \setlength\floatc@sp@contentwidth{\linewidth}%
-  \addtolength\floatc@sp@contentwidth{-60pt}%
-  \parbox[t]{60pt}{{\@fs@cfont#1}}%
-  \parbox[t]{\floatc@sp@contentwidth}{#2}}%
-
-% sp float style; uses the sp caption style
-\newcommand\fs@sp{
-  \def\@fs@cfont{\bfseries}\let\@fs@capt\floatc@sp
+\DeclareCaptionFormat{sp}{%
+  \parbox[t]{60pt}{#1}%
+  \parbox[t]{\dimexpr\textwidth-60pt\relax}{#2#3}%
+}
+\captionsetup{
+  format=sp,
+  font=normalsize,
+  labelfont={normalfont,bf},
+  labelsep=none,
+  skip=\medskipamount
+}
+\DeclareCaptionSubType*{figure}
+\DeclareCaptionSubType*{table}
+\captionsetup[subfigure]{%
+  margin=0pt,
+  position=bottom,
+  skip=0.5ex,
+  format=plain
+}
+\newcommand\fs@sp{%
+  \def\@fs@cfont{\bfseries}%
+  \let\@fs@capt\floatc@sp
   \def\@fs@pre{\hrule\kern5pt}%
   \def\@fs@post{\kern5pt\hrule\relax}%
-  \def\@fs@mid{\kern10pt}
+  \def\@fs@mid{\kern10pt}%
   \let\@fs@iftopcapt\iffalse}
-
-% users can override these commands using float.sty's functionality
 \floatstyle{sp}
 \restylefloat{figure}
 \restylefloat{table}
