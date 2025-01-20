@@ -67,7 +67,8 @@
 \RequirePackage{iftex}
 
 % amsmath must be loaded before unicode-math; might as well load it here
-\RequirePackage[leqno,tbtags]{amsmath}
+% doing this via loading mathtools, which fixes & extends amsmath
+\RequirePackage[leqno,tbtags]{mathtools}
 
 % Load fonts as indicated by \@fontenum setting.
 \ifcase \@fontenum % 0 = cm
