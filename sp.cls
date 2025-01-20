@@ -75,6 +75,9 @@
 \tracinglostchars=3
 
 % Load fonts as indicated by \@fontenum setting.
+\ifnum \@fontenum > 2 % lucidaot or defaultot
+  \RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\fi
 \ifcase \@fontenum % 0 = cm
   % Computer Modern is the standard font; do nothing
 \or % 1 = times
@@ -87,7 +90,6 @@
   \DeclareTextCommand{\textbullet}{\encodingdefault}{\UseTextSymbol{OMS}\textbullet} % the default is tiny
   \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
 \or % 3 = lucidaot
-  \RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
   % load Lucida font files from local directory if possible
   % three cases: (i) found in texmf tree, (ii) found in local `./fonts`
