@@ -64,10 +64,11 @@
 \ProcessOptions\relax
 \LoadClass[12pt,twoside]{article}
 
+\RequirePackage{iftex}
+
 % amsmath must be loaded before unicode-math; might as well load it here
 \RequirePackage[leqno,tbtags]{amsmath}
 
-\RequirePackage{ifxetex}
 % if 1) lucida is requested, and 2) lucimatx can't be found, and 3) we're using XeTeX,
 % fall back to lucidaot with a warning
 \ifnum \@fontenum = 2
@@ -207,7 +208,7 @@
 %=====================================================================
 %========================= required packages =========================
 
-\ifxetex
+\iftutex
 \else
   \RequirePackage[utf8]{inputenc}
   % define U+2011 NON-BREAKING HYPHEN as a regular hyphen + line break prohibition
