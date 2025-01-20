@@ -305,28 +305,20 @@
 %=====================================================================
 %========================== page dimensions ==========================
 
-% Vertical.
-\paperheight=11in
-\topmargin=0in     %
-\headheight=0.2in  % head: 1.5in (margin + head + sep = .5; latex adds 1in)
-\headsep=0.3in     %
-\topskip=0.1in     % included in the textheight
-\textheight=8in    % text is 8in
-\footskip=0.5in    % foot: 1.5in (.5 + 1.0in leftover)
-\parskip=0pt
+\RequirePackage{geometry}
 
-% Horizontal.
-\paperwidth=8.5in
-\textwidth=5.5in
-\oddsidemargin=0.5in  % 1.5in due to LaTeX's calculations
-\evensidemargin=0.5in % 1.5in due to LaTeX's calculations
-\raggedbottom % constant spacing in the text; cost is a ragged bottom
-\parindent=0.25in
-\leftmargini=0.5in
-\@ifundefined{mathindent}{}{\mathindent=0.5in\relax}%
-
-% Tell dvips about our paper.
-\special{papersize=8.5in,11in}
+\geometry{
+  paperheight=11in,
+  paperwidth=8.5in,
+  top=1.5in,     
+  bottom=1.5in,   
+  left=1.5in,
+  right=1.5in,
+  headheight=0.2in,
+  headsep=0.3in,
+  footskip=0.5in,
+  marginparwidth=1in
+}
 
 %=====================================================================
 %============================== title ================================
