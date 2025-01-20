@@ -70,6 +70,9 @@
 % doing this via loading mathtools, which fixes & extends amsmath
 \RequirePackage[leqno,tbtags]{mathtools}
 
+% missing characters is a serious issue for technical typesetting
+\tracinglostchars=3
+
 % Load fonts as indicated by \@fontenum setting.
 \ifcase \@fontenum % 0 = cm
   % Computer Modern is the standard font; do nothing
