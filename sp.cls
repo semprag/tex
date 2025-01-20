@@ -90,7 +90,7 @@
   \DeclareTextCommand{\textbullet}{\encodingdefault}{\UseTextSymbol{OMS}\textbullet} % the default is tiny
   \DeclareMathSymbol{\nLeftrightarrow}{\mathrel}{arrows}{105} % the default, 103, is too short
 \or % 3 = lucidaot
-  \defaultfontfeatures{Ligatures=TeX,Scale=0.9}
+  \defaultfontfeatures{Ligatures=TeX,Scale=0.87}
   % load Lucida font files from local directory if possible
   % three cases: (i) found in texmf tree, (ii) found in local `./fonts`
   % subfolder, (iii) found in system (macOS, in particular)
@@ -98,30 +98,7 @@
     % Case (i): found by `IfFontExistsTF` in texmf tree
     \ClassInfo{sp.cls}{Loading LucidaOT files from texmf tree}
     \defaultfontfeatures+{Extension=.otf}
-    % pre-configure the fonts for loading via their canonical / system name
-    % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
-    \defaultfontfeatures[Lucida Bright OT]{
-      UprightFont=LucidaBrightOT,
-      BoldFont=LucidaBrightOT-Demi,
-      ItalicFont=LucidaBrightOT-Italic,
-      BoldItalicFont=LucidaBrightOT-DemiItalic}
-    \defaultfontfeatures[Lucida Sans OT]{
-      UprightFont=LucidaSansOT,
-      BoldFont=LucidaSansOT-Demi,
-      ItalicFont=LucidaSansOT-Italic,
-      BoldItalicFont=LucidaSansOT-DemiItalic}
-    \defaultfontfeatures[Lucida Sans Typewriter OT]{
-      UprightFont=LucidaSansTypewriterOT-Bold,
-      BoldFont=LucidaSansTypewriterOT-Bold,
-      ItalicFont=LucidaSansTypewriterOT-Oblique,
-      BoldItalicFont=LucidaSansTypewriterOT-BoldOblique}
-    \defaultfontfeatures[Lucida Console DK]{
-      UprightFont=LucidaConsoleDK,
-      BoldFont=LucidaConsoleDK-Bold,
-      ItalicFont=LucidaConsoleDK-Italic,
-      BoldItalicFont=LucidaConsoleDK-BoldItalic}
-    % there is no such pre-configuration implemented in unicode-math,
-    % so \setmathfont must be called distinctly in each branch
+    % \setmathfont must be called distinctly in each branch
     \setmathfont{LucidaBrightMathOT}
     \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
   }{%
@@ -130,40 +107,42 @@
       % Case (ii): file exists in local `./fonts` subfolder
       \ClassInfo{sp.cls}{Loading LucidaOT files from local directory (./fonts/)}
       \defaultfontfeatures+{Path=./fonts/,Extension=.otf}
-      % pre-configure the fonts for loading via their canonical / system name
-      % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
-      \defaultfontfeatures[Lucida Bright OT]{
-        UprightFont=LucidaBrightOT,
-        BoldFont=LucidaBrightOT-Demi,
-        ItalicFont=LucidaBrightOT-Italic,
-        BoldItalicFont=LucidaBrightOT-DemiItalic}
-      \defaultfontfeatures[Lucida Sans OT]{
-        UprightFont=LucidaSansOT,
-        BoldFont=LucidaSansOT-Demi,
-        ItalicFont=LucidaSansOT-Italic,
-        BoldItalicFont=LucidaSansOT-DemiItalic}
-      \defaultfontfeatures[Lucida Sans Typewriter OT]{
-        UprightFont=LucidaSansTypewriterOT-Bold,
-        BoldFont=LucidaSansTypewriterOT-Bold,
-        ItalicFont=LucidaSansTypewriterOT-Oblique,
-        BoldItalicFont=LucidaSansTypewriterOT-BoldOblique}
-      \defaultfontfeatures[Lucida Console DK]{
-        UprightFont=LucidaConsoleDK,
-        BoldFont=LucidaConsoleDK-Bold,
-        ItalicFont=LucidaConsoleDK-Italic,
-        BoldItalicFont=LucidaConsoleDK-BoldItalic}
-      % there is no such pre-configuration implemented in unicode-math,
-      % so \setmathfont must be called distinctly in each branch
+      % \setmathfont must be called distinctly in each branch
       \setmathfont{LucidaBrightMathOT}
       \setmathfont{LucidaBrightMathOT-Demi}[version=bold]
     }{%
       % Case (iii): we'll better find it in the system
       \ClassInfo{sp.cls}{Loading LucidaOT fonts from system}
-      \setmathfont{Lucida Bright Math OT}}
+      % \setmathfont must be called distinctly in each branch
+      \setmathfont{Lucida Bright Math OT}
+      \setmathfont{Lucida Bright Math OT Demi}[version=bold]}
   }
   % now that the fonts have been located,
   % load them using their canonical / system names
-  \setmainfont{Lucida Bright OT}[Numbers=OldStyle]
+    % pre-configure the fonts for loading via their canonical / system name
+    % by specifying the filenames for each Upright/Bold/Italic/BoldItalic variant
+    \defaultfontfeatures[Lucida Bright OT]{
+      UprightFont=LucidaBrightOT,
+      BoldFont=LucidaBrightOT-Demi,
+      ItalicFont=LucidaBrightOT-Italic,
+      BoldItalicFont=LucidaBrightOT-DemiItalic,
+      Numbers=OldStyle}
+    \defaultfontfeatures[Lucida Sans OT]{
+      UprightFont=LucidaSansOT,
+      BoldFont=LucidaSansOT-Demi,
+      ItalicFont=LucidaSansOT-Italic,
+      BoldItalicFont=LucidaSansOT-DemiItalic,
+      BoldFeatures = {RawFeature={embolden=2}},
+      BoldItalicFeatures = {RawFeature={embolden=2}}}
+    \defaultfontfeatures[Lucida Console DK]{
+      UprightFont=LucidaConsoleDK,
+      BoldFont=LucidaConsoleDK-Bold,
+      ItalicFont=LucidaConsoleDK-Italic,
+      BoldItalicFont=LucidaConsoleDK-BoldItalic,
+      Scale=MatchLowercase,
+      FakeStretch=0.88,
+      Ligatures=ResetAll}
+  \setmainfont{Lucida Bright OT}
   \setsansfont{Lucida Sans OT}
   \setmonofont{Lucida Console DK}
   % some needed enrichments
