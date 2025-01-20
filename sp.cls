@@ -396,7 +396,7 @@
 %=====================================================================
 %=========================== frontmatter =============================
 
-% The spacing specs (arg 2 of \list) are the same for the mshistory,
+% The spacing specs (arg 2 of \list) are the same for the
 % abstract, and keywords environments, except that the abstract is
 % indented somewhat.
 
@@ -411,11 +411,6 @@
   \setlength{\rightmargin}{\leftmargin}
   \setlength{\parskip}{0em}
 }
-
-\newenvironment{mshistory}%
-{\list{}{\frontmatterspacing{0em}}%
-\item\relax}%
-{\endlist}
 
 % \ignorespacesandpars inspired by http://tex.stackexchange.com/a/179034/3642
 \def\ignorespacesandpars{%
