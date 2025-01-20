@@ -587,8 +587,8 @@
   \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
 \fi
 
-\ifnum \@examplenum =3
-  \RequirePackage{gb4e-emulate}
+\ifnum \@examplenum = 3
+  \AtBeginDocument{\RequirePackage{gb4e-emulate}}
 \fi
 
 
