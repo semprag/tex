@@ -33,8 +33,7 @@
 % font selection
 \newcount\@fontenum
 % example-numbering packages
-\newif\if@expex
-\newif\if@linguex
+\newcount\@examplenum
 % production settings
 \newif\if@biblatex
 \newif\if@final
@@ -54,8 +53,9 @@
 \DeclareOption{lucida}{\@fontenum=2}
 \DeclareOption{lucidaot}{\@fontenum=3}
 % example-numbering packages
-\DeclareOption{expex}{\@expextrue}
-\DeclareOption{linguex}{\@linguextrue}
+\DeclareOption{expex}{\@examplenum=1}
+\DeclareOption{linguex}{\@examplenum=2}
+\DeclareOption{gb4e}{\@examplenum=3}
 % production settings
 \DeclareOption{biblatex}{\@biblatextrue}
 \DeclareOption{final}{\@finaltrue}
@@ -645,18 +645,9 @@
 \providecommand{\sv}[1]{\ensuremath{\llbracket{#1}\rrbracket}}
 
 %=====================================================================
-%=========================== linguex settings ========================
+%====================== example package settings =====================
 
-\if@linguex
-  \AtEndPreamble{\RequirePackage{linguex}}%
-  \AtEndPreamble{\renewcommand{\firstrefdash}{}}%
-  \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
-\fi
-
-%=====================================================================
-%=========================== expex settings ========================
-
-\if@expex
+\ifnum \@examplenum = 1
   \RequirePackage{expex}%
   \lingset{%
     exskip=-0.5ex,
@@ -688,6 +679,18 @@
   }
   \gathertags
 \fi
+
+\ifnum \@examplenum = 2
+  \AtEndPreamble{\RequirePackage{linguex}}%
+  \AtEndPreamble{\renewcommand{\firstrefdash}{}}%
+  \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
+\fi
+
+\ifnum \@examplenum =3
+  \RequirePackage{gb4e-emulate}
+\fi
+
+
 
 %================================ fin ================================
 %=====================================================================
