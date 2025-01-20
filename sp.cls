@@ -52,6 +52,7 @@
 \DeclareOption{times}{\@fontenum=1}
 \DeclareOption{lucida}{\@fontenum=2}
 \DeclareOption{lucidaot}{\@fontenum=3}
+\DeclareOption{defaultot}{\@fontenum=4}
 % example-numbering packages
 \DeclareOption{expex}{\@examplenum=1}
 \DeclareOption{linguex}{\@examplenum=2}
