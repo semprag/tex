@@ -132,8 +132,9 @@
       BoldFont=LucidaSansOT-Demi,
       ItalicFont=LucidaSansOT-Italic,
       BoldItalicFont=LucidaSansOT-DemiItalic,
-      BoldFeatures = {RawFeature={embolden=2}},
-      BoldItalicFeatures = {RawFeature={embolden=2}}}
+      % BoldFeatures = {RawFeature={embolden=2}},
+      % BoldItalicFeatures = {RawFeature={embolden=2}}%
+    }
     \defaultfontfeatures[Lucida Console DK]{
       UprightFont=LucidaConsoleDK,
       BoldFont=LucidaConsoleDK-Bold,
