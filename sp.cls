@@ -166,18 +166,16 @@
   \setmainfont{Lucida Bright OT}[Numbers=OldStyle]
   \setsansfont{Lucida Sans OT}
   \setmonofont{Lucida Console DK}
+  % some needed enrichments
   % borrow \ulcorner and \urcorner from Latin Modern OT
   \setmathfont{latinmodern-math.otf}[range={"231C-"231D}]
-  % shim several math commands to approximate definitions in lucimatx.sty
-  \def\llbracket{\symbol{"27E6}} % MATHEMATICAL LEFT WHITE SQUARE BRACKET
-  \def\rrbracket{\symbol{"27E7}} % MATHEMATICAL RIGHT WHITE SQUARE BRACKET
-  \def\leadsto{\symbol{"21DD}} % RIGHTWARDS SQUIGGLE ARROW
-  \def\Join{\symbol{"22C8}} % BOWTIE
-  \def\Box{\symbol{"25A1}} % WHITE SQUARE
-  \def\Diamond{\symbol{"25C7}} % WHITE DIAMOND
+  % some adjustments
   \let\models\vDash
   \let\nmodels\nvDash
+\else % otdefault, will use LatinModern, unless the user specifies their own fonts
+  \setmathfont{latinmodern-math.otf}
 \fi
+
 \ifnum \@fontenum < 2
   % load shims for non-Lucida fonts (0 = cm and 1 = times)
   \IfFileExists{stmaryrd.sty}{\RequirePackage{stmaryrd}}{
@@ -190,6 +188,16 @@
 \else
   % load extras for Lucida fonts (2 = lucida and 3 = lucidaot)
   \linespread{1.05}
+\fi
+
+\ifnum \@fontenum > 2 
+  % some older names as aliases for unicode-math commands
+  \let\llbracket\lBrack
+  \let\rrbracket\rBrack
+  \let\leadsto\rightsquigarrow
+  \let\Join\bowtie
+  \let\Box\mdlgwhtsquare
+  \let\Diamond\mdlgwhtdiamond
 \fi
 
 % Strong widow and orphan control
