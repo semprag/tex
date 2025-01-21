@@ -8,6 +8,14 @@
 \ProcessOptions\relax
 \LoadClass{sp}
 
+% As of hyperxmp v5.12, dated 2023/09/10, hyperxmp is supposed to be loaded after hyperref
+% but before any \hypersetup commands, so we load it now
+
+\RequirePackage{hyperxmp}
+
+% tell hyperref/hyperxmp to keep pdf info of the old kind
+\hypersetup{keeppdfinfo}
+
 \def\@spvolume{}
 \newcommand{\spvolume}[1]{\gdef\@spvolume{#1}}
 
@@ -30,7 +38,7 @@
   \def\@oddhead{%
     \footnotesize
     \begin{minipage}[c]{.25in}
-      \includegraphics[width=\textwidth]{sp-logo}
+     \IfFileExists{sp-logo.pdf}{\includegraphics[width=\textwidth]{sp-logo}}{}
     \end{minipage}%
     \begin{minipage}[c]{5.25in}
       \href{http://semprag.org/}{Semantics \& Pragmatics}
