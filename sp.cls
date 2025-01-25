@@ -239,16 +239,6 @@
   \setlength{\bibsep}{0pt}
   \setlength{\bibhang}{0.25in}
   \bibliographystyle{sp}
-  \newcommand{\posscitet}[1]{\citeauthor{#1}'s (\citeyear{#1})}
-  \newcommand{\possciteauthor}[1]{\citeauthor{#1}'s}
-  \newcommand{\pgposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~#2)}
-  \newcommand{\secposscitet}[2]{\citeauthor{#1}'s (\citeyear{#1}:~$\S$#2)}
-  \newcommand{\pgcitealt}[2]{\citealt{#1}:~#2}
-  \newcommand{\seccitealt}[2]{\citealt{#1}:~$\S$#2}
-  \newcommand{\pgcitep}[2]{(\citealt{#1}:~#2)}
-  \newcommand{\seccitep}[2]{(\citealt{#1}:~$\S$#2)}
-  \newcommand{\pgcitet}[2]{\citeauthor{#1} (\citeyear{#1}:~#2)}
-  \newcommand{\seccitet}[2]{\citeauthor{#1} (\citeyear{#1}:~$\S$#2)}
   % \addbibresource{} and \printbibliography are the names of standard
   % BibLaTeX macros, which are shimmed here to call out to normal BibTeX.
   % The \@bibresources variable stores a list of bibliography arguments,
