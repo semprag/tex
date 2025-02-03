@@ -535,7 +535,7 @@
     aboveexskip=1ex,
     belowexskip=2ex,
     everygla=}
-  \ifxetex
+  \iftutex
     \let\expexgla\gla%
     \AtBeginDocument{\let\gla\expexgla}
   \fi
