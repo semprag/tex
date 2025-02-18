@@ -567,7 +567,9 @@
 \fi
 
 \ifnum \@examplenum = 3
-  \AtBeginDocument{\RequirePackage{gb4e-emulate}}
+  \AtBeginDocument{%
+    \RequirePackage{gb4e-emulate}
+    \setlist*[exe]{align=left}
 \fi
 
 
