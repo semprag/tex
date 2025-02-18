@@ -64,6 +64,7 @@
 
 % centered page number (with article prefix if available) on all pages
 \def\@oddfoot{\footnotesize\hfill\ifx\@empty\@sparticle\else\@sparticle:\fi\thepage\hfill}
+\let\@evenfoot\@oddfoot
 
 \newenvironment{mshistory}%
 {\list{}{\frontmatterspacing{0em}}%
