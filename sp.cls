@@ -564,6 +564,20 @@
   \AtEndPreamble{\RequirePackage{linguex}}%
   \AtEndPreamble{\renewcommand{\firstrefdash}{}}%
   \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
+  % https://tex.stackexchange.com/a/226774
+  \AtBeginDocument{%
+    \makeatletter
+    \renewcommand{\printExNo}{%
+      \@ifnextchar[{\complexExNo}{%
+        \hyperlink{ExNo.\thetmpaEx}{%
+          \if@noftnote\theExLBr\else\theFnExLBr\fi
+          \thetmpaEx
+          \if@noftnote\theExRBr\else\theFnExRBr\fi
+        }%
+        \xspace
+      }%
+    }
+    \makeatother}
 \fi
 
 \ifnum \@examplenum = 3
