@@ -564,9 +564,25 @@
   \AtEndPreamble{%
     \RequirePackage{linguex}%
     \renewcommand{\firstrefdash}{}%
-    \input{sp-linguex-settings.sty}}
   \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
 \fi
+
+\AtBeginDocument{%
+  \IfPackageLoadedTF{linguex}{%
+    \renewcommand{\printExNo}{%
+      \@ifnextchar[{%
+        \complexExNo%
+      }{%
+        \hyperlink{ExNo.\thetmpaEx}{%
+          \if@noftnote\theExLBr\else\theFnExLBr\fi
+          \thetmpaEx
+          \if@noftnote\theExRBr\else\theFnExRBr\fi
+        }%
+        \xspace
+      }%
+    }%
+  }{}%
+}
 
 \ifnum \@examplenum = 3
   \AtBeginDocument{%
