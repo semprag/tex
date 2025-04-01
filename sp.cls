@@ -565,7 +565,7 @@
 \ifnum \@examplenum = 2
   \AtEndPreamble{%
     \RequirePackage{linguex}%
-    \renewcommand{\firstrefdash}{}%
+    \renewcommand{\firstrefdash}{}}%
   \AtBeginDocument{\settowidth{\Exlabelwidth}{(110)}}
 \fi
 
