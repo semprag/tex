@@ -148,6 +148,8 @@
   % some needed enrichments
   % borrow \ulcorner and \urcorner from Latin Modern OT
   \setmathfont{latinmodern-math.otf}[range={"231C-"231D}]
+  % borrow \turnediota from XITS Math
+  \setmathfont{XITSMath-Regular.otf}[range={"2129}]
   % some adjustments (these need to be done AtBeginDocument once unicode-math has applied)
   \AtBeginDocument{%
     \let\models\vDash
