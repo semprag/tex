@@ -48,16 +48,16 @@
 \newcommand\restoreexe{\ifgbemulate@fn\setcounter{exei}{\value{savedexe}}\fi\gbemulate@fnfalse}
 
 \newlist{xlist}{enumerate}{3}
-\setlist[xlist,1]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,labelsep=*,parsep=\p@ plus.5\p@ minus.5\p@,label={\alph*.},widest=m.,itemindent=0em}
-\setlist[xlist,2]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\roman*.},widest=iv.,labelsep=*,itemindent=0em}
-\setlist[xlist,3]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\arabic*.},widest=9.,labelsep=*,itemindent=0em}
+\setlist[xlist,1]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,labelsep=*,parsep=\p@ plus.5\p@ minus.5\p@,label={\alph*.},widest=m.,itemindent=0em,ref={\arabic{exei}\alph*}}
+\setlist[xlist,2]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\roman*.},widest=iv.,labelsep=*,itemindent=0em,ref={\thexlisti.\roman*}}
+\setlist[xlist,3]{topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\arabic*.},widest=9.,labelsep=*,itemindent=0em,ref={\thexlistii.\arabic*}}
 % emulate specific lists
 % is this the right way to do this?
-\newenvironment{xlisti}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\roman*.},widest=iv.,itemindent=-1em]}{\end{xlist}}
-\newenvironment{xlista}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\alph*.},widest=m.,itemindent=0em]}{\end{xlist}}
-\newenvironment{xlistn}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\arabic*.},widest=9.,labelsep=*,itemindent=0em]}{\end{xlist}}
-\newenvironment{xlistI}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\Roman*.},widest=IV.,labelsep=*,itemindent=0em]}{\end{xlist}}
-\newenvironment{xlistA}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\Alph*.},widest=M.,labelsep=*,itemindent=0em]}{\end{xlist}}
+\newenvironment{xlisti}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\roman*.},widest=iv.,itemindent=-1em,ref={\arabic{exei}\roman*}]}{\end{xlist}}
+\newenvironment{xlista}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,labelsep=*,label={\alph*.},widest=m.,itemindent=0em,ref={\arabic{exei}\alph*}]}{\end{xlist}}
+\newenvironment{xlistn}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\arabic*.},widest=9.,labelsep=*,itemindent=0em,ref={\arabic{exei}\arabic*}]}{\end{xlist}}
+\newenvironment{xlistI}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\Roman*.},widest=IV.,labelsep=*,itemindent=0em,ref={\arabic{exei}\Roman*}]}{\end{xlist}}
+\newenvironment{xlistA}{\begin{xlist}[topsep=1.5\p@ plus\p@,itemsep=1.5\p@ plus\p@,parsep=\p@ plus.5\p@ minus.5\p@,label={\Alph*.},widest=M.,labelsep=*,itemindent=0em,ref={\arabic{exei}\Alph*}]}{\end{xlist}}
 
 %%% subeex macro without vertical spacing code from gb4e
 \def\@subex#1#2{\settowidth{\labelwidth}{#1}\itemindent\z@\labelsep#2%
