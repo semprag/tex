@@ -194,6 +194,9 @@
 
 \frenchspacing
 
+% LuaTeX is very aggressive in adding whitespace between paragraphs
+\ifluatex\raggedbottom\fi
+
 %=====================================================================
 %========================= required packages =========================
 
