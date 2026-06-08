@@ -211,6 +211,8 @@
 \RequirePackage{xspace}
 % microtype handles punctuation at the right margin. We want it for
 % the final product, but it's okay if authors lack it.
+\RequirePackage{silence}
+\WarningFilter{latex}{Command \showhyphens   has changed.} % https://github.com/schlcht/microtype/issues/53
 \IfFileExists{microtype.sty}{%
   \RequirePackage[final,protrusion={true,compatibility},verbose=silent]{microtype}
 }{}
