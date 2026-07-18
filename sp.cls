@@ -595,6 +595,16 @@
   \AtBeginDocument{%
     \RequirePackage{gb4e-emulate}
     \setlist*[exe]{align=left}}
+  % In footnotes, restart example numbering and use lowercase roman
+  % numerals (house style). The plain \setlist (no *) drops the global
+  % resume=exe series inside the footnote group, so body numbering is
+  % unaffected.
+  \renewcommand{\@makefntext}[1]{%
+    \setlist[exe]{label={(\roman*)},ref=\roman*,align=left,
+      topsep=7\p@ plus2\p@ minus3\p@,itemsep=3\p@ plus2\p@}%
+    \setlist*[xlist,1]{ref={\roman{exei}\alph*}}%
+    \parindent=0.25in
+    \noindent \hbox to \z@{\hss{\@thefnmark} \hfil}#1}
 \fi
 
 
